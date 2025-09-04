@@ -168,7 +168,7 @@ export default function Services() {
             <div className="glass rounded-2xl p-8 max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold mb-4">Tam Fiyat ve Özel Projeler</h3>
               <p className="text-muted-foreground mb-6">
-                Yukarıdaki fiyatlar ortalama fiyatlardır. Projenizin detaylarına göre tam fiyat 
+                Yukarıdaki fiyatlar başlangıç fiyatlardır. Projenizin detaylarına göre tam fiyat 
                 belirlenir. Özel projeler için bana ulaşın, size özel bir çözüm geliştirelim.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">

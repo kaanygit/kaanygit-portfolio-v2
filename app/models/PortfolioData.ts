@@ -176,7 +176,7 @@ export class PortfolioData {
         id: "1",
         name: "Giriş Paketi",
         description: "Basit mobil uygulamalar için ideal başlangıç paketi",
-        price: "Ortalama ₺15.000",
+        price: "~₺20.000",
         duration: "2-3 hafta",
         level: "beginner",
         features: [
@@ -194,7 +194,7 @@ export class PortfolioData {
         id: "2",
         name: "Orta Paket",
         description: "Orta ölçekli uygulamalar için kapsamlı çözüm",
-        price: "Ortalama ₺40.000",
+        price: "~₺50.000-₺70.000",
         duration: "4-6 hafta",
         level: "intermediate",
         features: [
@@ -215,7 +215,7 @@ export class PortfolioData {
         id: "3",
         name: "İleri Paket",
         description: "Kurumsal düzeyde platformlar için premium çözüm",
-        price: "Ortalama ₺80.000",
+        price: "~₺100.000+",
         duration: "8-12 hafta",
         level: "advanced",
         features: [
