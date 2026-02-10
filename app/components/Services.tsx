@@ -1,202 +1,158 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Check, Star, Zap, Crown } from 'lucide-react';
-import { fadeInUp, staggerContainer, scaleIn } from '../utils/animations';
-import { cn } from '../utils/cn';
+import { Check, Zap, Star, Crown, Mail } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
 import { PortfolioData } from '../models/PortfolioData';
+import SectionHeader from './ui/SectionHeader';
+import ScrollReveal from './ui/ScrollReveal';
+
+const levelIcons: Record<string, React.ReactNode> = {
+  beginner: <Zap size={20} />,
+  intermediate: <Star size={20} />,
+  advanced: <Crown size={20} />,
+};
+
+const levelLabels: Record<string, string> = {
+  beginner: 'Başlangıç',
+  intermediate: 'Orta',
+  advanced: 'İleri',
+};
 
 export default function Services() {
-  const portfolioData = PortfolioData.getInstance();
-  const services = portfolioData.getServices();
+  const data = PortfolioData.getInstance();
+  const services = data.getServices();
+  const contactInfo = data.getContactInfo();
 
-  const getPackageIcon = (level: string) => {
-    switch (level) {
-      case 'beginner':
-        return <Zap className="w-8 h-8" />;
-      case 'intermediate':
-        return <Star className="w-8 h-8" />;
-      case 'advanced':
-        return <Crown className="w-8 h-8" />;
-      default:
-        return <Zap className="w-8 h-8" />;
-    }
-  };
-
-  const getPackageColor = (level: string) => {
-    switch (level) {
-      case 'beginner':
-        return 'border-primary bg-primary/5';
-      case 'intermediate':
-        return 'border-secondary bg-secondary/5';
-      case 'advanced':
-        return 'border-accent bg-accent/5';
-      default:
-        return 'border-primary bg-primary/5';
-    }
-  };
-
-  const getPackageTextColor = (level: string) => {
-    switch (level) {
-      case 'beginner':
-        return 'text-primary';
-      case 'intermediate':
-        return 'text-secondary';
-      case 'advanced':
-        return 'text-accent';
-      default:
-        return 'text-primary';
-    }
-  };
+  const phone = contactInfo.phone.replace(/[\s+]/g, '');
 
   return (
-    <section id="services" className="py-20 bg-muted/20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          variants={staggerContainer}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-        >
-          {/* Section Header */}
-          <motion.div
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="gradient-text">App Geliştirme Paketleri</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Mobil uygulama veya platform geliştirmek mi istiyorsunuz? 
-              İhtiyacınıza uygun paketi seçin ve hayalinizdeki projeyi hayata geçirelim.
-            </p>
-          </motion.div>
+    <section id="services" className="py-24 md:py-32">
+      <div className="max-w-6xl mx-auto px-6">
+        <SectionHeader
+          title="Hizmetler"
+          subtitle="Projenize uygun paketi seçin"
+        />
 
-          {/* Services Grid */}
-          <div className="grid md:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={service.id}
-                variants={scaleIn}
-                whileHover={{ y: -10 }}
-                className="group flex"
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service, i) => (
+            <ScrollReveal key={service.id} delay={i * 0.1}>
+              <div
+                className={`border rounded-xl p-8 h-full flex flex-col ${
+                  service.level === 'intermediate'
+                    ? 'border-accent bg-accent/5'
+                    : 'border-border'
+                }`}
               >
-                <div className={cn(
-                  "glass rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 flex flex-col w-full border-2",
-                  getPackageColor(service.level)
-                )}>
-                  {/* Package Header */}
-                  <div className="text-center mb-8">
-                    <div className={cn(
-                      "inline-flex items-center justify-center w-16 h-16 rounded-full mb-4",
-                      getPackageColor(service.level)
-                    )}>
-                      <div className={getPackageTextColor(service.level)}>
-                        {getPackageIcon(service.level)}
-                      </div>
-                    </div>
-                    
-                    <h3 className="text-2xl font-bold mb-2">{service.name}</h3>
-                    <p className="text-muted-foreground mb-4">{service.description}</p>
-                    
-                    <div className="text-3xl font-bold mb-2">
-                      <span className={getPackageTextColor(service.level)}>
-                        {service.price}
-                      </span>
-                    </div>
-                    <p className="text-sm text-muted-foreground">{service.duration}</p>
-                  </div>
-
-                  {/* Features */}
-                  <div className="flex-grow mb-8">
-                    <h4 className="font-semibold mb-4">Paket İçeriği:</h4>
-                    <ul className="space-y-3">
-                      {service.features.map((feature, featureIndex) => (
-                        <li key={featureIndex} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm text-muted-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Technologies */}
-                  <div className="mb-8">
-                    <h4 className="font-semibold mb-3">Kullanılan Teknolojiler:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {service.technologies.map((tech) => (
-                        <span
-                          key={tech}
-                          className="px-3 py-1 bg-muted text-muted-foreground rounded-full text-xs font-medium"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* CTA Button */}
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={cn(
-                      "w-full py-3 rounded-lg font-semibold transition-all duration-300",
-                      "hover:shadow-lg",
-                      service.level === 'beginner' && "bg-primary text-white hover:bg-primary-dark",
-                      service.level === 'intermediate' && "bg-secondary text-white hover:bg-secondary-dark",
-                      service.level === 'advanced' && "bg-accent text-white hover:bg-accent-dark"
-                    )}
-                    onClick={() => {
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
-                  >
-                    Paketi Seç
-                  </motion.button>
+                {/* Header */}
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-accent">{levelIcons[service.level]}</span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+                    {levelLabels[service.level]}
+                  </span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
 
-          {/* Additional Info */}
-          <motion.div
-            variants={fadeInUp}
-            className="text-center mt-16"
-          >
-            <div className="glass rounded-2xl p-8 max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold mb-4">Tam Fiyat ve Özel Projeler</h3>
-              <p className="text-muted-foreground mb-6">
-                Yukarıdaki fiyatlar başlangıç fiyatlardır. Projenizin detaylarına göre tam fiyat 
-                belirlenir. Özel projeler için bana ulaşın, size özel bir çözüm geliştirelim.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => {
-                    const element = document.getElementById('contact');
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-lg hover:bg-primary-dark transition-colors duration-300"
-                >
-                  <span>Tam Fiyat İçin İletişime Geç</span>
-                </motion.button>
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="tel:+905375019024"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-300"
-                >
-                  <span>Hemen Ara: 0537 501 90 24</span>
-                </motion.a>
+                <h3 className="font-display text-xl font-semibold text-foreground mt-2">
+                  {service.name}
+                </h3>
+                <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
+                  {service.description}
+                </p>
+
+                <div className="font-mono text-xs text-muted-foreground mt-3">
+                  Süre: {service.duration}
+                </div>
+
+                {/* Features */}
+                <ul className="mt-6 space-y-3 flex-1">
+                  {service.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start gap-3 text-sm text-foreground"
+                    >
+                      <Check size={14} className="text-accent mt-0.5 shrink-0" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-1.5 mt-6">
+                  {service.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="font-mono text-[10px] uppercase tracking-wider text-muted-foreground border border-border px-2 py-0.5 rounded"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Contact CTAs instead of price */}
+                <div className="mt-8 pt-6 border-t border-border">
+                  <p className="font-display text-sm font-semibold text-foreground mb-3">
+                    Bana Ulaşın
+                  </p>
+                  <div className="flex flex-col gap-2">
+                    <a
+                      href={`https://wa.me/${phone}?text=${encodeURIComponent(
+                        `Merhaba, ${service.name} hakkında bilgi almak istiyorum`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white px-4 py-2.5 rounded-lg text-sm font-medium hover:bg-[#20BD5A] transition-colors"
+                    >
+                      <FaWhatsapp size={16} />
+                      WhatsApp
+                    </a>
+                    <a
+                      href={`mailto:${contactInfo.email}?subject=${encodeURIComponent(
+                        `${service.name} Hakkında Bilgi`
+                      )}`}
+                      className="inline-flex items-center justify-center gap-2 border border-border text-foreground px-4 py-2.5 rounded-lg text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+                    >
+                      <Mail size={14} />
+                      E-posta Gönder
+                    </a>
+                  </div>
+                </div>
               </div>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Custom project CTA */}
+        <ScrollReveal delay={0.3}>
+          <div className="mt-16 text-center border-t border-border pt-12">
+            <p className="text-foreground font-display text-lg font-semibold mb-2">
+              Özel projeniz mi var?
+            </p>
+            <p className="text-muted-foreground text-sm mb-6">
+              Size özel çözüm için bana ulaşın
+            </p>
+            <div className="flex justify-center gap-4">
+              <a
+                href={`https://wa.me/${phone}?text=${encodeURIComponent(
+                  'Merhaba, özel bir proje hakkında görüşmek istiyorum'
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-lg text-sm font-medium hover:bg-accent-hover transition-colors"
+              >
+                <FaWhatsapp size={16} />
+                WhatsApp ile Yazın
+              </a>
+              <a
+                href={`mailto:${contactInfo.email}?subject=${encodeURIComponent(
+                  'Özel Proje Hakkında'
+                )}`}
+                className="inline-flex items-center gap-2 border border-border text-foreground px-6 py-3 rounded-lg text-sm font-medium hover:border-accent hover:text-accent transition-colors"
+              >
+                <Mail size={14} />
+                E-posta
+              </a>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

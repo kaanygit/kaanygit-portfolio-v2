@@ -50,7 +50,7 @@ export class PortfolioData {
         title: "Freelance Software Developer",
         company: "Serbest",
         period: "2024–Günümüz",
-        description: "3+ mobil uygulama geliştirdim. Firebase, REST API, BLoC ve MVC mimarileri kullanarak modern ve ölçeklenebilir uygulamalar oluşturdum.",
+        description: "10+ mobil uygulama geliştirdim. Firebase, REST API, BLoC ve MVC mimarileri kullanarak modern ve ölçeklenebilir uygulamalar oluşturdum.",
         technologies: ["Flutter", "Dart", "Firebase", "REST API", "BLoC", "MVC"]
       },
       {
@@ -93,6 +93,14 @@ export class PortfolioData {
         category: "mobile",
         githubUrl: "https://github.com/kaanygit/accessible-route-app",
         liveUrl: "https://play.google.com/store/apps/details?id=com.accessible.route.app"
+      },
+      {
+        id: "4",
+        title: "Lawantra – Hukuk Platformu",
+        description: "Full stack hukuk platformu. Sunucu altyapısı, web arayüzü ve mobil uygulama dahil tüm geliştirme süreçlerini kapsayan kapsamlı bir hukuk teknolojisi çözümü. Mobil uygulama henüz yayında değil, web platformu lawantra.com üzerinden aktif.",
+        technologies: ["Flutter", "Next.js", "Node.js", "Firebase", "REST API"],
+        category: "web",
+        liveUrl: "https://lawantra.com"
       }
     ];
   }
