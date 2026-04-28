@@ -1,8 +1,17 @@
 'use client';
 
+import Image from 'next/image';
+import { ExternalLink } from 'lucide-react';
+import { FaLaptopCode } from 'react-icons/fa';
 import { PortfolioData } from '../models/PortfolioData';
 import SectionHeader from './ui/SectionHeader';
 import ScrollReveal from './ui/ScrollReveal';
+
+const companyLogoMap: Record<string, string> = {
+  '1': '/lawantra-logo.svg',
+  '2': '/appgamedo-logo.webp',
+  '4': '/yandex-logo.png',
+};
 
 export default function Experience() {
   const data = PortfolioData.getInstance();
@@ -23,15 +32,60 @@ export default function Experience() {
                   </span>
                 </div>
                 <div className="md:col-span-3">
-                  <h3 className="font-display text-xl font-semibold text-foreground">
-                    {exp.title}
-                  </h3>
-                  <p className="text-accent font-body font-medium mt-1">
-                    {exp.company}
-                  </p>
-                  <p className="text-muted-foreground mt-4 leading-relaxed">
-                    {exp.description}
-                  </p>
+                  <div className="flex items-start gap-4">
+                    {companyLogoMap[exp.id] ? (
+                      <div className="w-12 h-12 relative rounded-lg overflow-hidden bg-surface flex-shrink-0">
+                        <Image
+                          src={companyLogoMap[exp.id]}
+                          alt={exp.company}
+                          width={48}
+                          height={48}
+                          className="object-contain"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-12 h-12 rounded-lg bg-surface flex items-center justify-center flex-shrink-0">
+                        <FaLaptopCode className="text-accent" size={20} />
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="font-display text-xl font-semibold text-foreground">
+                        {exp.title}
+                      </h3>
+                      <div className="flex flex-wrap items-center gap-2 mt-1">
+                        {exp.link ? (
+                          <a
+                            href={exp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-accent font-body font-medium inline-flex items-center gap-1 hover:underline"
+                          >
+                            {exp.company}
+                            <ExternalLink size={12} />
+                          </a>
+                        ) : (
+                          <span className="text-accent font-body font-medium">
+                            {exp.company}
+                          </span>
+                        )}
+                        {exp.type && (
+                          <span className="font-mono text-xs text-muted-foreground border border-border px-2 py-0.5 rounded">
+                            {exp.type}
+                          </span>
+                        )}
+                        {exp.location && (
+                          <span className="font-mono text-xs text-muted-foreground">
+                            · {exp.location}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-muted-foreground mt-4 leading-relaxed space-y-2">
+                    {exp.description.split('\n').map((paragraph, idx) => (
+                      <p key={idx}>{paragraph}</p>
+                    ))}
+                  </div>
                   <div className="flex flex-wrap gap-2 mt-4">
                     {exp.technologies.map((tech) => (
                       <span
@@ -51,13 +105,13 @@ export default function Experience() {
           ))}
         </div>
 
-        {/* Stats */}
         <ScrollReveal delay={0.2}>
-          <div className="grid grid-cols-3 gap-8 mt-20 pt-8 border-t border-border">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-8 border-t border-border">
             {[
-              { value: '10+', label: 'Uygulama' },
+              { value: '10+', label: 'Mobil Uygulama' },
               { value: '2.5+', label: 'Yıl Deneyim' },
-              { value: '%100', label: 'Memnuniyet' },
+              { value: '100+', label: 'Koç' },
+              { value: '200+', label: 'Kullanıcı' },
             ].map((stat) => (
               <div key={stat.label} className="text-center md:text-left">
                 <span className="font-display text-3xl md:text-4xl font-bold text-foreground">

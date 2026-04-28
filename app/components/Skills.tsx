@@ -1,6 +1,6 @@
 'use client';
 
-import { Smartphone, Globe, Server, Database, Wrench } from 'lucide-react';
+import { Smartphone, Globe, Server, Database, Wrench, Brain } from 'lucide-react';
 import { PortfolioData } from '../models/PortfolioData';
 import SectionHeader from './ui/SectionHeader';
 import ScrollReveal from './ui/ScrollReveal';
@@ -9,9 +9,12 @@ const categoryConfig: Record<string, { label: string; icon: React.ReactNode }> =
   mobile: { label: 'Mobil', icon: <Smartphone size={18} /> },
   frontend: { label: 'Frontend', icon: <Globe size={18} /> },
   backend: { label: 'Backend', icon: <Server size={18} /> },
-  database: { label: 'Veritabanı', icon: <Database size={18} /> },
+  database: { label: 'Veritabanı ve Cloud', icon: <Database size={18} /> },
+  ai: { label: 'AI ve Veri', icon: <Brain size={18} /> },
   tools: { label: 'Araçlar', icon: <Wrench size={18} /> },
 };
+
+const categoryOrder = ['mobile', 'frontend', 'backend', 'database', 'ai', 'tools'];
 
 export default function Skills() {
   const data = PortfolioData.getInstance();
@@ -36,7 +39,9 @@ export default function Skills() {
         />
 
         <div className="space-y-12">
-          {Object.entries(grouped).map(([category, categorySkills], i) => {
+          {categoryOrder.map((category, i) => {
+            const categorySkills = grouped[category];
+            if (!categorySkills) return null;
             const config = categoryConfig[category];
             if (!config) return null;
 
@@ -74,7 +79,6 @@ export default function Skills() {
           })}
         </div>
 
-        {/* Legend */}
         <ScrollReveal delay={0.3}>
           <div className="mt-12 pt-8 border-t border-border flex flex-wrap gap-6">
             <div className="flex items-center gap-2">

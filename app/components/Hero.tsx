@@ -116,14 +116,26 @@ export default function Hero() {
               </p>
             </div>
             <div className="border-l-2 border-border pl-6">
-              <span className="font-display text-5xl font-bold text-foreground">48</span>
+              <span className="font-display text-5xl font-bold text-foreground">100+</span>
               <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">
-                Teknoloji
+                Koç
+              </p>
+            </div>
+            <div className="border-l-2 border-border pl-6">
+              <span className="font-display text-5xl font-bold text-foreground">200+</span>
+              <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">
+                Kullanıcı
+              </p>
+            </div>
+            <div className="border-l-2 border-accent pl-6">
+              <span className="font-display text-4xl font-bold text-foreground">AI</span>
+              <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground mt-1">
+                Destekli Ürünler
               </p>
             </div>
 
             <div className="mt-4 flex flex-wrap gap-2">
-              {['Flutter', 'Dart', 'Firebase', 'React', 'Node.js', 'TypeScript'].map(
+              {['Flutter', 'Next.js', 'Node.js', 'Firebase', 'AI Integration'].map(
                 (tech) => (
                   <span
                     key={tech}

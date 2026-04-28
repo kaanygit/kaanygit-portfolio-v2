@@ -15,11 +15,11 @@ export class PortfolioData {
   public getPersonalInfo() {
     return {
       name: "Yasin Kaan Yiğit",
-      title: "Software Developer",
-      summary: "Mobil ve web uygulamaları geliştiren deneyimli bir yazılım geliştiricisiyim. Flutter ile mobil uygulamalar, Node.js ile backend servisleri ve React ve Next.js ile modern web arayüzleri oluşturuyorum. Firebase, MongoDB ve PostgreSQL gibi modern teknolojilerle ölçeklenebilir çözümler geliştiriyorum.",
+      title: "Full-Stack & Mobile Developer",
+      summary: "Flutter ile mobil uygulamalar, Next.js ve React ile modern web arayüzleri, Node.js ve Firebase ile backend servisleri geliştiriyorum. AI destekli ürünler, legaltech platformları, marketplace uygulamaları ve coaching ürünleri üzerinde uçtan uca ürün geliştirme deneyimine sahibim.",
       languages: [
         { name: "Türkçe", level: "Ana dil" },
-        { name: "İngilizce", level: "B1" }
+        { name: "İngilizce", level: "Orta seviye (B1)" }
       ]
     };
   }
@@ -28,17 +28,17 @@ export class PortfolioData {
     return [
       {
         id: "1",
-        degree: "Bilgisayar Programcılığı (Önlisans)",
-        institution: "İstanbul Üniversitesi",
-        period: "2022–2025",
-        description: "Programlama temelleri, veri yapıları, algoritmalar ve yazılım geliştirme süreçleri"
+        degree: "Matematik Lisans",
+        institution: "Ege Üniversitesi, İzmir",
+        period: "Eyl 2020 – Tem 2025",
+        description: "Analitik düşünme, problem çözme ve matematiksel modelleme"
       },
       {
         id: "2",
-        degree: "Matematik (Lisans)",
-        institution: "Ege Üniversitesi",
-        period: "2020–2025",
-        description: "Analitik düşünme, problem çözme ve matematiksel modelleme"
+        degree: "Bilgisayar Programcılıığı (Önlisans)",
+        institution: "İstanbul Üniversitesi, İstanbul",
+        period: "Eyl 2022 – Haz 2025",
+        description: "Programlama temelleri, veri yapıları, algoritmalar ve yazılım geliştirme süreçleri"
       }
     ];
   }
@@ -47,18 +47,44 @@ export class PortfolioData {
     return [
       {
         id: "1",
-        title: "Freelance Software Developer",
-        company: "Serbest",
-        period: "2024–Günümüz",
-        description: "10+ mobil uygulama geliştirdim. Firebase, REST API, BLoC ve MVC mimarileri kullanarak modern ve ölçeklenebilir uygulamalar oluşturdum.",
-        technologies: ["Flutter", "Dart", "Firebase", "REST API", "BLoC", "MVC"]
+        title: "Software Developer",
+        company: "Lawantra",
+        period: "Ağu 2025 – Devam",
+        type: "Tam zamanlı",
+        location: "Uzaktan, İzmir",
+        description: "Next.js, Node.js, Firebase, REST API ve Flutter kullanarak web, backend ve mobil katmanları kapsayan legaltech platform özellikleri geliştiriyorum.\nAI destekli hukuki iş akışları, güvenli belge süreçleri, KVKK odaklı veri gizliliği ve avukatlara yönelik otomasyon araçları için ürün akışları geliştiriyorum.\nMobil uygulama geliştirme, ön uç geliştirme, backend entegrasyonları ve canlı web platformu iyileştirmelerine katkı sağlıyorum.",
+        technologies: ["Next.js", "Node.js", "Firebase", "REST API", "Flutter", "AI Integration"],
+        link: "https://lawantra.com"
       },
       {
         id: "2",
+        title: "Software Developer",
+        company: "Appgamedo",
+        period: "Ağu 2025 – Devam",
+        type: "Tam zamanlı",
+        location: "Uzaktan",
+        description: "Coachun platformunda koç keşfi, güvenli mesajlaşma, randevu alma, görüntülü görüşme, kişiselleştirilmiş öneriler ve çok dilli ürün akışları üzerinde çalışıyorum.\n100+ koç ve 200+ kullanıcıya hizmet veren, kullanıcı sayısı büyüyen Coachun ürününe katkı sağlıyorum.\nMobil geliştirme, frontend arayüzleri, backend web teknolojileri ve veritabanı destekli ürün akışlarına katkı sağlıyorum.",
+        technologies: ["Flutter", "Dart", "Firebase", "REST API", "Frontend", "Backend"],
+        link: "https://coachun.com"
+      },
+      {
+        id: "3",
+        title: "Freelance Software Developer",
+        company: "Serbest",
+        period: "Haz 2024 – Devam",
+        type: "Freelance",
+        location: "Uzaktan",
+        description: "Flutter, Dart, Firebase, REST API, BLoC ve MVC kullanarak 10+ mobil uygulama geliştirdim.\nMarketplace, health, accessibility, coaching, AI productivity ve legaltech alanlarında 10+ ürün teslim ettim.\nAuthentication, Firestore veri modelleri, gerçek zamanlı mesajlaşma, push notification, REST API entegrasyonları ve yayın hazırlığı teslim ettim.",
+        technologies: ["Flutter", "Dart", "Firebase", "REST API", "BLoC", "MVC"]
+      },
+      {
+        id: "4",
         title: "Search Engine Quality Development Specialist",
         company: "Yandex",
-        period: "2025",
-        description: "Arama motoru sonuç kalitesini değerlendirme ve geliştirme süreçlerinde yer aldım.",
+        period: "Oca 2025 – May 2025",
+        type: "Tam zamanlı",
+        location: "Uzaktan",
+        description: "Arama sonuçlarının kalite, alaka düzeyi, query intent ve kılavuz uyumluluğunu sistematik QA süreçleriyle analiz ettim.\nArama deneyimi, sonuç kalitesi ve ürün kararlarını iyileştirmeye yönelik veri odaklı geri bildirim sağladım.",
         technologies: ["Quality Assurance", "Data Analysis", "Search Algorithms"]
       }
     ];
@@ -68,17 +94,35 @@ export class PortfolioData {
     return [
       {
         id: "1",
-        title: "Spory – Sağlık ve Aktivite Uygulaması",
-        description: "Aktivite katılımı ve kişisel plan takibi için geliştirilmiş kapsamlı sağlık uygulaması. Kullanıcıların fitness hedeflerini takip etmelerini ve sosyal aktivitelere katılmalarını sağlar.",
-        technologies: ["Flutter", "Dart", "Firebase", "BLoC"],
-        category: "mobile",
-        githubUrl: "https://github.com/kaanygit/spory"
+        title: "Lawantra.com – AI Legaltech Platformu",
+        description: "Hukuki belge otomasyonu, güvenli iş akışları, AI destekli hukuk operasyonları ve mobil bağlantılı ürün akışları için aktif AI legaltech web platformu özellikleri geliştirdim.",
+        technologies: ["Next.js", "Node.js", "Firebase", "REST API", "Flutter", "AI Integration"],
+        category: "web",
+        liveUrl: "https://lawantra.com"
       },
       {
         id: "2",
+        title: "Dreeys AI – AI Goal Tracker ve Aksiyon Koçu",
+        description: "Görev, alışkanlık, hatırlatma, odak seansı, ilerleme takibi, ödül sistemi, Apple Sign In, uygulama içi satın alma ve 7 dil desteği içeren AI goal tracker yayınladım. Kişiselleştirilmiş hatırlatmalar ve chat-powered AI coach deneyimi içerir.",
+        technologies: ["Flutter", "AI Integration", "Firebase", "Apple Sign In", "In-App Purchases"],
+        category: "mobile",
+        liveUrl: "https://dreeys.com/en",
+        appStoreUrl: "https://apps.apple.com/us/app/dreeys-ai/id6761930732"
+      },
+      {
+        id: "3",
+        title: "Coachun – Koçluk Platformu",
+        description: "100+ koç ve 200+ kullanıcıya hizmet veren koçluk platformunda keşif, mesajlaşma, randevu, görüntülü görüşme ve öneri akışlarına katkı sağladım.",
+        technologies: ["Flutter", "Firebase", "Frontend", "Backend"],
+        category: "mobile",
+        liveUrl: "https://coachun.com",
+        appStoreUrl: "https://apps.apple.com/tr/app/coachun/id6751751635?l=tr"
+      },
+      {
+        id: "4",
         title: "ppazar – İlan ve Ticaret Platformu",
-        description: "İlan paylaşma ve gerçek zamanlı mesajlaşma özellikli ticaret platformu. Yapay zeka destekli araç öneri sistemi, EİDS onaylı ilanlar ve kapsamlı hizmet kategorileri ile kullanıcılar ürünlerini satabilir ve alıcılarla anında iletişim kurabilir.",
-        technologies: ["Flutter", "Firebase Realtime DB", "Dart", "AI Integration"],
+        description: "İlan, hizmet, ticaret ve gerçek zamanlı alıcı-satıcı iletişimi için cross-platform mobil marketplace uygulaması geliştirdim. Firebase Realtime Database mesajlaşma, AI destekli araç öneri sistemi, EIDS onaylı ilan akışı ve çoklu mağaza yayın hazırlığı.",
+        technologies: ["Flutter", "Dart", "Firebase Realtime Database", "AI Integration"],
         category: "mobile",
         githubUrl: "https://github.com/kaanygit/ppazar",
         liveUrl: "https://play.google.com/store/apps/details?id=com.ppazar.ppazarapp",
@@ -86,86 +130,89 @@ export class PortfolioData {
         huaweiUrl: "https://appgallery.huawei.com/app/C114328649"
       },
       {
-        id: "3",
-        title: "Accessible Route App",
-        description: "Engelliler için erişilebilir rota ve tesis bulma uygulaması. Google Maps API entegrasyonu ile engelli dostu mekanları ve rotaları gösterir.",
-        technologies: ["Flutter", "Google Maps API", "Dart"],
+        id: "5",
+        title: "Spory – Sağlık ve Aktivite Uygulaması",
+        description: "Kişisel plan akışları ve BLoC tabanlı state management içeren sağlık/aktivite takip uygulaması geliştirdim.",
+        technologies: ["Flutter", "Dart", "Firebase", "BLoC"],
+        category: "mobile",
+        githubUrl: "https://github.com/kaanygit/spory"
+      },
+      {
+        id: "6",
+        title: "Harmopy.com – AI Destekli Kişisel Gelişim Platformu",
+        description: "Yapay zeka destekli kişisel gelişim ve mental sağlık platformu. Kişiselleştirilmiş koçluk, günlük hedefler, ilham veren içerikler, duygusal durum takibi ve ilerleme analizi özellikleri geliştirdim. 50+ AI koç ile kullanıcıların içsel potansiyelini keşfetmesini sağlayan web platformu.",
+        technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "AI Integration"],
+        category: "web",
+        liveUrl: "https://harmopy.com"
+      },
+      {
+        id: "7",
+        title: "Accessible Route",
+        description: "Flutter, Dart ve Google Maps API kullanarak erişilebilir rota ve tesis keşfi uygulaması oluşturdum.",
+        technologies: ["Flutter", "Dart", "Google Maps API"],
         category: "mobile",
         githubUrl: "https://github.com/kaanygit/accessible-route-app",
         liveUrl: "https://play.google.com/store/apps/details?id=com.accessible.route.app"
-      },
-      {
-        id: "4",
-        title: "Lawantra – Hukuk Platformu",
-        description: "Full stack hukuk platformu. Sunucu altyapısı, web arayüzü ve mobil uygulama dahil tüm geliştirme süreçlerini kapsayan kapsamlı bir hukuk teknolojisi çözümü. Mobil uygulama henüz yayında değil, web platformu lawantra.com üzerinden aktif.",
-        technologies: ["Flutter", "Next.js", "Node.js", "Firebase", "REST API"],
-        category: "web",
-        liveUrl: "https://lawantra.com"
       }
     ];
   }
 
   public getSkills(): Skill[] {
     return [
-      // Programming Languages
-      { id: "1", name: "C#", level: "intermediate", category: "backend" },
-      { id: "2", name: "C", level: "intermediate", category: "backend" },
-      { id: "3", name: "Dart", level: "expert", category: "mobile" },
-      { id: "4", name: "CSS3", level: "advanced", category: "frontend" },
-      { id: "5", name: "GraphQL", level: "intermediate", category: "backend" },
-      { id: "6", name: "HTML5", level: "advanced", category: "frontend" },
-      { id: "7", name: "JavaScript", level: "advanced", category: "frontend" },
-      { id: "8", name: "PHP", level: "intermediate", category: "backend" },
-      { id: "9", name: "Python", level: "intermediate", category: "backend" },
+      { id: "1", name: "Flutter", level: "expert", category: "mobile" },
+      { id: "2", name: "Dart", level: "expert", category: "mobile" },
+      { id: "3", name: "BLoC", level: "advanced", category: "mobile" },
+      { id: "4", name: "MVC", level: "advanced", category: "mobile" },
+      { id: "5", name: "Firebase", level: "expert", category: "mobile" },
+      { id: "6", name: "Push Notification", level: "advanced", category: "mobile" },
+      { id: "7", name: "App Store Yayınlama", level: "advanced", category: "mobile" },
+
+      { id: "8", name: "React", level: "advanced", category: "frontend" },
+      { id: "9", name: "Next.js", level: "advanced", category: "frontend" },
       { id: "10", name: "TypeScript", level: "advanced", category: "frontend" },
-      
-      // Cloud & Backend Services
-      { id: "11", name: "Google Cloud", level: "intermediate", category: "backend" },
-      { id: "12", name: "Firebase", level: "expert", category: "backend" },
-      { id: "13", name: "Netlify", level: "intermediate", category: "backend" },
-      { id: "14", name: "AWS", level: "intermediate", category: "backend" },
-      { id: "15", name: ".Net", level: "intermediate", category: "backend" },
-      
-      // Frameworks & Libraries
-      { id: "16", name: "Django", level: "intermediate", category: "backend" },
+      { id: "11", name: "JavaScript", level: "advanced", category: "frontend" },
+      { id: "12", name: "HTML5", level: "advanced", category: "frontend" },
+      { id: "13", name: "CSS3", level: "advanced", category: "frontend" },
+      { id: "14", name: "TailwindCSS", level: "advanced", category: "frontend" },
+      { id: "15", name: "Redux", level: "intermediate", category: "frontend" },
+
+      { id: "16", name: "Node.js", level: "advanced", category: "backend" },
       { id: "17", name: "Express.js", level: "advanced", category: "backend" },
-      { id: "18", name: "Flutter", level: "expert", category: "mobile" },
-      { id: "19", name: "Flask", level: "intermediate", category: "backend" },
-      { id: "20", name: "Next.js", level: "advanced", category: "frontend" },
-      { id: "21", name: "Node.js", level: "advanced", category: "backend" },
-      { id: "22", name: "OpenCV", level: "intermediate", category: "backend" },
-      { id: "23", name: "React", level: "advanced", category: "frontend" },
-      { id: "24", name: "Redux", level: "intermediate", category: "frontend" },
-      { id: "25", name: "Socket.io", level: "intermediate", category: "backend" },
-      { id: "26", name: "TailwindCSS", level: "advanced", category: "frontend" },
-      { id: "27", name: "Vite", level: "intermediate", category: "frontend" },
-      
-      // Databases
-      { id: "28", name: "Apache", level: "intermediate", category: "database" },
-      { id: "29", name: "Microsoft SQL Server", level: "intermediate", category: "database" },
-      { id: "30", name: "MongoDB", level: "intermediate", category: "database" },
-      { id: "31", name: "MySQL", level: "intermediate", category: "database" },
-      { id: "32", name: "Postgres", level: "intermediate", category: "database" },
-      { id: "33", name: "Redis", level: "intermediate", category: "database" },
-      { id: "34", name: "SQLite", level: "intermediate", category: "database" },
-      { id: "35", name: "Supabase", level: "intermediate", category: "database" },
-      
-      // Design & AI/ML
-      { id: "36", name: "Canva", level: "intermediate", category: "tools" },
-      { id: "37", name: "Figma", level: "intermediate", category: "tools" },
-      { id: "38", name: "Pandas", level: "intermediate", category: "backend" },
-      { id: "39", name: "TensorFlow", level: "intermediate", category: "backend" },
-      { id: "40", name: "Matplotlib", level: "intermediate", category: "backend" },
-      { id: "41", name: "scikit-learn", level: "intermediate", category: "backend" },
-      { id: "42", name: "Keras", level: "intermediate", category: "backend" },
-      { id: "43", name: "NumPy", level: "intermediate", category: "backend" },
-      
-      // Development Tools
-      { id: "44", name: "GitHub", level: "expert", category: "tools" },
-      { id: "45", name: "Git", level: "expert", category: "tools" },
+      { id: "18", name: "NestJS", level: "intermediate", category: "backend" },
+      { id: "19", name: "REST API", level: "expert", category: "backend" },
+      { id: "20", name: "GraphQL", level: "intermediate", category: "backend" },
+      { id: "21", name: "Python", level: "intermediate", category: "backend" },
+      { id: "22", name: "Django", level: "intermediate", category: "backend" },
+      { id: "23", name: "Flask", level: "intermediate", category: "backend" },
+      { id: "24", name: "Socket.io", level: "intermediate", category: "backend" },
+
+      { id: "25", name: "Firestore", level: "expert", category: "database" },
+      { id: "26", name: "Firebase Realtime Database", level: "expert", category: "database" },
+      { id: "27", name: "PostgreSQL", level: "intermediate", category: "database" },
+      { id: "28", name: "MongoDB", level: "intermediate", category: "database" },
+      { id: "29", name: "MySQL", level: "intermediate", category: "database" },
+      { id: "30", name: "SQLite", level: "intermediate", category: "database" },
+      { id: "31", name: "Redis", level: "intermediate", category: "database" },
+      { id: "32", name: "Supabase", level: "intermediate", category: "database" },
+      { id: "33", name: "AWS", level: "intermediate", category: "database" },
+      { id: "34", name: "Google Cloud", level: "intermediate", category: "database" },
+      { id: "35", name: "Docker", level: "intermediate", category: "database" },
+
+      { id: "36", name: "AI Integration", level: "advanced", category: "ai" },
+      { id: "37", name: "Pandas", level: "intermediate", category: "ai" },
+      { id: "38", name: "NumPy", level: "intermediate", category: "ai" },
+      { id: "39", name: "TensorFlow", level: "intermediate", category: "ai" },
+      { id: "40", name: "Keras", level: "intermediate", category: "ai" },
+      { id: "41", name: "scikit-learn", level: "intermediate", category: "ai" },
+      { id: "42", name: "Matplotlib", level: "intermediate", category: "ai" },
+      { id: "43", name: "OpenCV", level: "intermediate", category: "ai" },
+
+      { id: "44", name: "Git", level: "expert", category: "tools" },
+      { id: "45", name: "GitHub", level: "expert", category: "tools" },
       { id: "46", name: "GitLab", level: "intermediate", category: "tools" },
-      { id: "47", name: "Docker", level: "intermediate", category: "tools" },
-      { id: "48", name: "Postman", level: "intermediate", category: "tools" }
+      { id: "47", name: "Postman", level: "intermediate", category: "tools" },
+      { id: "48", name: "Figma", level: "intermediate", category: "tools" },
+      { id: "49", name: "Canva", level: "intermediate", category: "tools" }
     ];
   }
 
@@ -174,7 +221,7 @@ export class PortfolioData {
       phone: "+90 537 501 9024",
       email: "yasinkaan345@hotmail.com",
       github: "github.com/kaanygit",
-      linkedin: "linkedin.com/in/yasinkaanyigit1/"
+      linkedin: "linkedin.com/in/yasinkaanyigit1"
     };
   }
 

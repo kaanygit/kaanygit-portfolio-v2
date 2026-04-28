@@ -23,15 +23,20 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yasin Kaan Yiğit - Yazılım Geliştirici",
+  title: "Yasin Kaan Yiğit | Full-Stack & Mobile Developer",
   description:
-    "Flutter ve mobil uygulama geliştiricisi. Firebase, REST API, BLoC ve MVC mimarileri konusunda uzman.",
+    "Flutter, Next.js, Node.js, Firebase ve AI Integration ile mobil, web ve backend ürünler geliştiren Full-Stack & Mobile Developer.",
   keywords: [
     "Flutter",
-    "Dart",
+    "Next.js",
+    "Node.js",
     "Firebase",
-    "Mobil Uygulama",
-    "Yazılım Geliştirici",
+    "Full-Stack Developer",
+    "Mobile Developer",
+    "AI Integration",
+    "Legaltech",
+    "React",
+    "TypeScript",
     "Portfolio",
   ],
   authors: [{ name: "Yasin Kaan Yiğit" }],
@@ -40,16 +45,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "tr_TR",
     url: "https://kaanygit.vercel.app",
-    title: "Yasin Kaan Yiğit - Yazılım Geliştirici",
+    title: "Yasin Kaan Yiğit | Full-Stack & Mobile Developer",
     description:
-      "Flutter ve mobil uygulama geliştiricisi. Firebase, REST API, BLoC ve MVC mimarileri konusunda uzman.",
+      "Flutter, Next.js, Node.js, Firebase ve AI Integration ile mobil, web ve backend ürünler geliştiren Full-Stack & Mobile Developer.",
     siteName: "Yasin Kaan Yiğit Portfolio",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yasin Kaan Yiğit - Yazılım Geliştirici",
+    title: "Yasin Kaan Yiğit | Full-Stack & Mobile Developer",
     description:
-      "Flutter ve mobil uygulama geliştiricisi. Firebase, REST API, BLoC ve MVC mimarileri konusunda uzman.",
+      "Flutter, Next.js, Node.js, Firebase ve AI Integration ile mobil, web ve backend ürünler geliştiren Full-Stack & Mobile Developer.",
   },
   robots: {
     index: true,

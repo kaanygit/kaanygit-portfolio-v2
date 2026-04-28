@@ -8,11 +8,14 @@ import { PortfolioData } from '../models/PortfolioData';
 import SectionHeader from './ui/SectionHeader';
 import ScrollReveal from './ui/ScrollReveal';
 
-const imageMap: Record<string, string> = {
-  '1': '/spory-logo.png',
-  '2': '/ppazar-logo.png',
-  '3': '/accesible-route-logo.png',
-  '4': '/lawantra-logo.svg',
+const imageMap: Record<string, { src: string; className?: string }> = {
+  '1': { src: '/lawantra-logo.svg' },
+  '2': { src: '/dreeys-logo.png' },
+  '3': { src: '/coachun-logo.svg', className: 'dark:invert' },
+  '4': { src: '/ppazar-logo.png' },
+  '5': { src: '/spory-logo.png' },
+  '6': { src: '/harmopy-logo.avif' },
+  '7': { src: '/accesible-route-logo.png' },
 };
 
 export default function Projects() {
@@ -43,10 +46,10 @@ export default function Projects() {
                   {imageMap[project.id] && (
                     <div className="w-20 h-20 md:w-24 md:h-24 relative rounded-xl overflow-hidden bg-surface">
                       <Image
-                        src={imageMap[project.id]}
+                        src={imageMap[project.id].src}
                         alt={project.title}
                         fill
-                        className="object-cover"
+                        className={`object-contain ${imageMap[project.id].className || ''}`}
                       />
                     </div>
                   )}

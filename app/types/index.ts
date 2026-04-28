@@ -18,13 +18,16 @@ export interface Experience {
   period: string;
   description: string;
   technologies: string[];
+  link?: string;
+  type?: string;
+  location?: string;
 }
 
 export interface Skill {
   id: string;
   name: string;
   level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
-  category: 'frontend' | 'backend' | 'mobile' | 'database' | 'tools' | 'other';
+  category: 'frontend' | 'backend' | 'mobile' | 'database' | 'tools' | 'ai' | 'other';
 }
 
 export interface Education {
