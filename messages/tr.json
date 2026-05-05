@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "title": "Yasin Kaan Yiğit — Full-Stack & Mobile Engineer",
+    "description": "Mobil ve web deneyimlerini, performanslı altyapılar ve rafine arayüzlerle uçtan uca tasarlayıp geliştiren bir yazılım mühendisi.",
+    "ogSiteName": "Yasin Kaan Yiğit · Portfolio"
+  },
+  "nav": {
+    "home": "Ana Sayfa",
+    "about": "Hakkımda",
+    "experience": "Deneyim",
+    "projects": "Projeler",
+    "skills": "Yetenekler",
+    "services": "Hizmetler",
+    "contact": "İletişim",
+    "themeSystem": "Sistem temasına geç",
+    "themeLight": "Açık temaya geç",
+    "themeDark": "Koyu temaya geç",
+    "languageLabel": "Dil seçin",
+    "menuOpen": "Menüyü aç",
+    "menuClose": "Menüyü kapat"
+  },
+  "hero": {
+    "eyebrow": "Full-Stack & Mobile Engineer",
+    "headlineLine1": "Yasin Kaan",
+    "headlineLine2": "Yiğit.",
+    "summary": "Flutter ile mobil uygulamalar, Next.js ve React ile modern web arayüzleri, Node.js, PostgreSQL ve Docker ile ölçeklenen backend servisleri geliştiriyorum. AI ürünleri, legaltech platformları, marketplace ve coaching çözümlerinde uçtan uca ürün geliştirme deneyimine sahibim.",
+    "ctaPrimary": "Seçili Projeleri Gör",
+    "ctaSecondary": "İletişime Geç",
+    "stats": {
+      "apps": "Yayınlanan ürün",
+      "years": "Yıl deneyim",
+      "coaches": "Aktif koç",
+      "users": "Aktif kullanıcı",
+      "ai": "AI destekli ürün"
+    },
+    "availability": "Yeni projelere açık",
+    "location": "İzmir",
+    "cards": {
+      "lawantra": { "tag": "Legaltech" },
+      "dreeys": { "tag": "AI Coach" },
+      "coachun": { "tag": "Coaching" }
+    },
+    "marqueeLabel": "Çalıştığım teknolojiler",
+    "scrollHint": "Aşağı kaydır"
+  },
+  "about": {
+    "title": "Hakkımda",
+    "eyebrow": "Profil",
+    "paragraph1": "Flutter ile mobil uygulamalar, Next.js ve React ile modern web arayüzleri, Node.js, PostgreSQL ve Docker ile ölçeklenen backend servisleri geliştiriyorum. Yazılımı bir teslim değil, sürekli iyileştirilen bir ürün olarak görüyorum.",
+    "paragraph2": "AI destekli ürünler, legaltech platformları, marketplace uygulamaları ve coaching ürünleri üzerinde uçtan uca ürün geliştirme deneyimine sahibim. Mimariden arayüz inceliklerine kadar her katmanda düşünmeyi seviyorum.",
+    "languagesTitle": "Diller",
+    "educationTitle": "Eğitim",
+    "languages": {
+      "tr": { "name": "Türkçe", "level": "Ana dil" },
+      "en": { "name": "İngilizce", "level": "B1 — Profesyonel çalışma seviyesi" }
+    },
+    "education": {
+      "ege": {
+        "degree": "Matematik · Lisans",
+        "institution": "Ege Üniversitesi · İzmir",
+        "period": "Eyl 2020 – Tem 2025",
+        "description": "Analitik düşünme, problem çözme ve matematiksel modelleme üzerine derinleşmiş çekirdek lisans eğitimi."
+      },
+      "istanbul": {
+        "degree": "Bilgisayar Programcılığı · Önlisans",
+        "institution": "İstanbul Üniversitesi · İstanbul",
+        "period": "Eyl 2022 – Haz 2025",
+        "description": "Veri yapıları, algoritmalar ve modern yazılım geliştirme süreçlerine odaklı uygulamalı program."
+      }
+    }
+  },
+  "experience": {
+    "title": "Deneyim",
+    "eyebrow": "Yolculuk",
+    "items": {
+      "lawantra": {
+        "title": "Software Developer",
+        "company": "Lawantra",
+        "period": "Ağu 2025 – Devam",
+        "type": "Tam zamanlı",
+        "location": "Uzaktan · İzmir",
+        "descriptionParagraphs": [
+          "Next.js, Node.js, Firebase, REST API ve Flutter ile web, backend ve mobil katmanları kapsayan bir legaltech platformunun ürün özelliklerini geliştiriyorum.",
+          "AI destekli hukuki iş akışları, güvenli belge süreçleri, KVKK odaklı veri gizliliği ve avukatlara yönelik otomasyon araçları için uçtan uca akışlar tasarlıyorum.",
+          "Mobil uygulama geliştirme, ön uç mimarisi, backend entegrasyonları ve canlı web platformunun sürekli iyileştirilmesine katkı sağlıyorum."
+        ]
+      },
+      "appgamedo": {
+        "title": "Software Developer",
+        "company": "Appgamedo",
+        "period": "Ağu 2025 – Devam",
+        "type": "Tam zamanlı",
+        "location": "Uzaktan",
+        "descriptionParagraphs": [
+          "Coachun platformunda koç keşfi, güvenli mesajlaşma, randevu, görüntülü görüşme, kişiselleştirilmiş öneriler ve çok dilli ürün akışları geliştiriyorum.",
+          "100'den fazla koç ve 200'ün üzerinde aktif kullanıcıya hizmet veren ürünün büyümesine doğrudan katkı sağlıyorum.",
+          "Mobil, frontend, backend ve veritabanı katmanlarını birlikte kurguluyor; performans ve kullanıcı deneyimini öncelikli tutuyorum."
+        ]
+      },
+      "freelance": {
+        "title": "Freelance Software Developer",
+        "company": "Bağımsız",
+        "period": "Haz 2024 – Devam",
+        "type": "Freelance",
+        "location": "Uzaktan",
+        "descriptionParagraphs": [
+          "Flutter, Dart, Firebase, REST API, BLoC ve MVC ile 10'dan fazla mobil uygulama geliştirdim.",
+          "Marketplace, sağlık, erişilebilirlik, coaching, AI productivity ve legaltech alanlarında 10'dan fazla ürün teslim ettim.",
+          "Authentication, Firestore veri modelleme, gerçek zamanlı mesajlaşma, push notification, REST API entegrasyonları ve store yayın hazırlığı süreçlerini eksiksiz yürüttüm."
+        ]
+      },
+      "yandex": {
+        "title": "Search Engine Quality Development Specialist",
+        "company": "Yandex",
+        "period": "Oca 2025 – May 2025",
+        "type": "Tam zamanlı",
+        "location": "Uzaktan",
+        "descriptionParagraphs": [
+          "Arama sonuçlarının kalite, alaka, query intent ve kılavuz uyumluluğunu sistematik QA süreçleriyle analiz ettim.",
+          "Arama deneyimi ve sonuç kalitesini geliştirmek için veri odaklı geri bildirim ve ürün önerileri sundum."
+        ]
+      }
+    },
+    "stats": {
+      "apps": "Mobil uygulama",
+      "years": "Yıl deneyim",
+      "coaches": "Koç",
+      "users": "Kullanıcı"
+    }
+  },
+  "projects": {
+    "title": "Seçili Projeler",
+    "eyebrow": "Çalışmalar",
+    "subtitle": "Tasarımdan teslime kadar uçtan uca kurguladığım ürünlerden bir seçki.",
+    "items": {
+      "lawantra": {
+        "title": "Lawantra · AI Legaltech Platformu",
+        "description": "Hukuki belge otomasyonu, güvenli iş akışları, AI destekli hukuk operasyonları ve mobil bağlantılı ürün akışlarına sahip aktif legaltech platformu."
+      },
+      "dreeys": {
+        "title": "Dreeys AI · Goal Tracker & Coach",
+        "description": "Görev, alışkanlık, hatırlatma, odak seansı, ödül sistemi, Apple Sign In, IAP ve 7 dil desteği ile AI destekli hedef takibi ve kişisel koçluk uygulaması."
+      },
+      "coachun": {
+        "title": "Coachun · Koçluk Platformu",
+        "description": "100+ koç ve 200+ kullanıcıya hizmet veren; keşif, güvenli mesajlaşma, randevu, görüntülü görüşme ve kişiselleştirilmiş öneri akışları içeren koçluk platformu."
+      },
+      "ppazar": {
+        "title": "ppazar · İlan & Ticaret",
+        "description": "Cross-platform marketplace; gerçek zamanlı alıcı–satıcı mesajlaşması, AI destekli araç önerisi, EIDS onaylı ilan akışı ve çoklu mağaza yayını."
+      },
+      "spory": {
+        "title": "Spory · Sağlık & Aktivite",
+        "description": "Kişiye özel plan akışları, BLoC tabanlı state yönetimi ve Firebase entegrasyonuyla geliştirilen sağlık & aktivite uygulaması."
+      },
+      "harmopy": {
+        "title": "Harmopy · AI Kişisel Gelişim",
+        "description": "50+ AI koç, kişiselleştirilmiş hedefler, ilham içerikleri ve duygusal durum takibi sunan, kişisel gelişim odaklı web platformu."
+      },
+      "accessible": {
+        "title": "Accessible Route",
+        "description": "Flutter ve Google Maps API ile geliştirilmiş; engelli bireyler için erişilebilir rota ve mekân keşif uygulaması."
+      }
+    },
+    "links": {
+      "github": "GitHub",
+      "web": "Web",
+      "playStore": "Google Play",
+      "appStore": "App Store",
+      "appGallery": "AppGallery"
+    },
+    "ctaMore": "Daha fazla projeyi GitHub'da incele"
+  },
+  "skills": {
+    "title": "Yetenekler",
+    "eyebrow": "Tech Stack",
+    "subtitle": "Üretirken her gün dokunduğum araçlar ve teknolojiler.",
+    "categories": {
+      "mobile": "Mobil",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Veritabanı & Cloud",
+      "ai": "AI & Veri",
+      "tools": "Araçlar"
+    },
+    "legend": {
+      "expert": "Uzman",
+      "advanced": "İleri",
+      "intermediate": "Orta"
+    }
+  },
+  "services": {
+    "title": "Hizmetler",
+    "eyebrow": "Birlikte Çalışalım",
+    "subtitle": "Projenizin ölçeğine göre konumlanmış üç paket. Tümü kaynak kod teslimi içerir.",
+    "popularBadge": "En çok tercih edilen",
+    "durationLabel": "Süre",
+    "contactLabel": "Bana ulaşın",
+    "whatsapp": "WhatsApp",
+    "email": "E-posta",
+    "levels": {
+      "beginner": "Başlangıç",
+      "intermediate": "Profesyonel",
+      "advanced": "Kurumsal"
+    },
+    "packages": {
+      "starter": {
+        "name": "Giriş Paketi",
+        "description": "Hızlı ve sade mobil ürünler için doğru başlangıç noktası.",
+        "features": [
+          "5–8 ekran arası uygulama",
+          "Sade ve özgün arayüz tasarımı",
+          "Temel CRUD işlemleri",
+          "Firebase Authentication",
+          "Firebase Firestore veritabanı",
+          "Google Play yayını",
+          "Kaynak kod teslimi"
+        ]
+      },
+      "pro": {
+        "name": "Profesyonel Paket",
+        "description": "Büyüyen ekipler ve canlıya çıkması gereken ciddi ürünler için.",
+        "features": [
+          "8–15 ekran arası uygulama",
+          "Gelişmiş arayüz ve etkileşim tasarımı",
+          "Karmaşık CRUD işlemleri",
+          "Gerçek zamanlı mesajlaşma",
+          "Push notification altyapısı",
+          "Sosyal medya entegrasyonları",
+          "Ödeme sistemi entegrasyonu",
+          "Yönetim paneli",
+          "Google Play & App Store yayını",
+          "Kaynak kod teslimi"
+        ]
+      },
+      "enterprise": {
+        "name": "Kurumsal Paket",
+        "description": "Ölçek, güvenlik ve sürdürülebilirlik gerektiren kurumsal düzeyde platformlar için.",
+        "features": [
+          "15+ ekran arası uygulama",
+          "Özel tasarım dili ve animasyonlar",
+          "Mikroservis mimarisi",
+          "Gerçek zamanlı veri senkronizasyonu",
+          "AI / ML entegrasyonu",
+          "iOS, Android ve Web çoklu platform",
+          "Gelişmiş güvenlik önlemleri",
+          "Analytics ve raporlama",
+          "Özel backend API geliştirme",
+          "Tüm app store'larda yayın",
+          "1 ay ücretsiz destek",
+          "Kaynak kod teslimi",
+          "Teknik dokümantasyon"
+        ]
+      }
+    },
+    "custom": {
+      "title": "Özel bir projeniz mi var?",
+      "subtitle": "Standart paketlerin dışında bir kurguya ihtiyacınız varsa, doğrudan konuşalım.",
+      "whatsappCta": "WhatsApp ile yazın",
+      "emailCta": "E-posta gönderin",
+      "whatsappMessage": "Merhaba, özel bir proje hakkında görüşmek istiyorum.",
+      "emailSubject": "Özel Proje Hakkında"
+    },
+    "packageMessage": "Merhaba, {name} hakkında bilgi almak istiyorum.",
+    "packageEmailSubject": "{name} hakkında bilgi"
+  },
+  "contact": {
+    "title": "İletişim",
+    "eyebrow": "Konuşalım",
+    "subtitle": "Yeni bir ürün, ortak bir proje ya da kısa bir sohbet — hepsi için açığım.",
+    "methods": {
+      "phone": "Telefon",
+      "email": "E-posta",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "name": "İsim",
+      "namePlaceholder": "Adınız",
+      "email": "E-posta",
+      "emailPlaceholder": "ornek@eposta.com",
+      "subject": "Konu",
+      "subjectPlaceholder": "Ne hakkında konuşalım?",
+      "message": "Mesaj",
+      "messagePlaceholder": "Birkaç cümleyle bahsedebilirsiniz…",
+      "submit": "Mesajı gönder",
+      "submitting": "Gönderiliyor…"
+    },
+    "status": {
+      "success": "Mesajınız ulaştı. En kısa sürede dönüş yapacağım.",
+      "error": "Mesaj gönderilemedi. Lütfen birazdan tekrar deneyin."
+    }
+  },
+  "footer": {
+    "tagline": "Yazılım ürünleri tasarlıyor ve geliştiriyorum.",
+    "rights": "Tüm hakları saklıdır.",
+    "scrollTop": "Yukarı çık"
+  }
+}

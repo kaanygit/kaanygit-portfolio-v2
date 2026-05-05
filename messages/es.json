@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "title": "Yasin Kaan Yiğit — Full-Stack & Mobile Engineer",
+    "description": "Ingeniero de software que diseña y desarrolla experiencias móviles y web refinadas de extremo a extremo, con sistemas performantes e interfaces limpias.",
+    "ogSiteName": "Yasin Kaan Yiğit · Portfolio"
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Sobre mí",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "skills": "Habilidades",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "themeSystem": "Cambiar al tema del sistema",
+    "themeLight": "Cambiar al tema claro",
+    "themeDark": "Cambiar al tema oscuro",
+    "languageLabel": "Seleccionar idioma",
+    "menuOpen": "Abrir menú",
+    "menuClose": "Cerrar menú"
+  },
+  "hero": {
+    "eyebrow": "Full-Stack & Mobile Engineer",
+    "headlineLine1": "Yasin Kaan",
+    "headlineLine2": "Yiğit.",
+    "summary": "Construyo aplicaciones móviles con Flutter, interfaces web modernas con Next.js y React, y servicios backend escalables con Node.js, PostgreSQL y Docker. Experiencia de producto de extremo a extremo en productos con IA, plataformas legaltech, marketplaces y soluciones de coaching.",
+    "ctaPrimary": "Ver proyectos",
+    "ctaSecondary": "Contáctame",
+    "stats": {
+      "apps": "Productos lanzados",
+      "years": "Años de experiencia",
+      "coaches": "Coaches activos",
+      "users": "Usuarios activos",
+      "ai": "Productos con IA"
+    },
+    "availability": "Abierto a nuevos proyectos",
+    "location": "İzmir",
+    "cards": {
+      "lawantra": { "tag": "Legaltech" },
+      "dreeys": { "tag": "Coach IA" },
+      "coachun": { "tag": "Coaching" }
+    },
+    "marqueeLabel": "Tecnologías con las que trabajo",
+    "scrollHint": "Desliza"
+  },
+  "about": {
+    "title": "Sobre mí",
+    "eyebrow": "Perfil",
+    "paragraph1": "Construyo aplicaciones móviles con Flutter, interfaces web modernas con Next.js y React, y servicios backend escalables con Node.js, PostgreSQL y Docker. Trato al software como un producto que se refina, no como un entregable que se olvida.",
+    "paragraph2": "He entregado de extremo a extremo productos con IA, plataformas legaltech, marketplaces y herramientas de coaching. Me gusta pensar a lo largo de toda la stack — de la arquitectura a los detalles de la interfaz.",
+    "languagesTitle": "Idiomas",
+    "educationTitle": "Educación",
+    "languages": {
+      "tr": { "name": "Turco", "level": "Nativo" },
+      "en": { "name": "Inglés", "level": "B1 — Nivel profesional de trabajo" }
+    },
+    "education": {
+      "ege": {
+        "degree": "Matemáticas · Licenciatura",
+        "institution": "Universidad Ege · İzmir",
+        "period": "Sep 2020 – Jul 2025",
+        "description": "Licenciatura centrada en pensamiento analítico, resolución de problemas y modelado matemático."
+      },
+      "istanbul": {
+        "degree": "Programación de Computadoras · Técnico",
+        "institution": "Universidad de Estambul · Estambul",
+        "period": "Sep 2022 – Jun 2025",
+        "description": "Programa práctico sobre estructuras de datos, algoritmos y prácticas modernas de desarrollo de software."
+      }
+    }
+  },
+  "experience": {
+    "title": "Experiencia",
+    "eyebrow": "Trayectoria",
+    "items": {
+      "lawantra": {
+        "title": "Software Developer",
+        "company": "Lawantra",
+        "period": "Ago 2025 – Presente",
+        "type": "Tiempo completo",
+        "location": "Remoto · İzmir",
+        "descriptionParagraphs": [
+          "Desarrollo de funcionalidades de producto en las capas web, backend y móvil de una plataforma legaltech con Next.js, Node.js, Firebase, REST API y Flutter.",
+          "Diseño de flujos de extremo a extremo para flujos legales asistidos por IA, procesos documentales seguros, privacidad de datos KVKK y herramientas de automatización para abogados.",
+          "Contribuciones a desarrollo móvil, arquitectura frontend, integraciones backend y mejora continua de la plataforma en producción."
+        ]
+      },
+      "appgamedo": {
+        "title": "Software Developer",
+        "company": "Appgamedo",
+        "period": "Ago 2025 – Presente",
+        "type": "Tiempo completo",
+        "location": "Remoto",
+        "descriptionParagraphs": [
+          "Construcción de descubrimiento de coaches, mensajería segura, agendamiento, sesiones de video, recomendaciones personalizadas y flujos multilingües en Coachun.",
+          "Contribución directa al crecimiento de un producto que sirve a más de 100 coaches y 200+ usuarios activos.",
+          "Trabajo a través de capas móvil, frontend, backend y base de datos — con foco en performance y experiencia de usuario."
+        ]
+      },
+      "freelance": {
+        "title": "Freelance Software Developer",
+        "company": "Independiente",
+        "period": "Jun 2024 – Presente",
+        "type": "Freelance",
+        "location": "Remoto",
+        "descriptionParagraphs": [
+          "Más de 10 aplicaciones móviles desarrolladas con Flutter, Dart, Firebase, REST API, BLoC y MVC.",
+          "Productos entregados en marketplaces, salud, accesibilidad, coaching, productividad con IA y legaltech.",
+          "Authentication, modelado de datos en Firestore, mensajería en tiempo real, push notifications, integraciones REST y publicación en stores asumidos de extremo a extremo."
+        ]
+      },
+      "yandex": {
+        "title": "Search Engine Quality Development Specialist",
+        "company": "Yandex",
+        "period": "Ene 2025 – May 2025",
+        "type": "Tiempo completo",
+        "location": "Remoto",
+        "descriptionParagraphs": [
+          "Análisis de calidad de resultados de búsqueda, relevancia, intención de consulta y cumplimiento de guidelines mediante procesos de QA sistemáticos.",
+          "Feedback basado en datos y recomendaciones de producto para mejorar la experiencia de búsqueda y la calidad de los resultados."
+        ]
+      }
+    },
+    "stats": {
+      "apps": "Apps móviles",
+      "years": "Años de experiencia",
+      "coaches": "Coaches",
+      "users": "Usuarios"
+    }
+  },
+  "projects": {
+    "title": "Proyectos seleccionados",
+    "eyebrow": "Trabajo",
+    "subtitle": "Una selección de productos que he construido de extremo a extremo — del diseño a la entrega.",
+    "items": {
+      "lawantra": {
+        "title": "Lawantra · Plataforma Legaltech con IA",
+        "description": "Plataforma legaltech activa con automatización documental, flujos seguros, operaciones legales asistidas por IA y flujos móviles conectados."
+      },
+      "dreeys": {
+        "title": "Dreeys AI · Goal Tracker & Coach",
+        "description": "App con IA para seguimiento de objetivos y coaching personal con tareas, hábitos, recordatorios, sesiones de foco, recompensas, Apple Sign In, IAP y soporte en 7 idiomas."
+      },
+      "coachun": {
+        "title": "Coachun · Plataforma de Coaching",
+        "description": "Plataforma de coaching que sirve a más de 100 coaches y 200+ usuarios — descubrimiento, mensajería segura, agendamiento, video y recomendaciones personalizadas."
+      },
+      "ppazar": {
+        "title": "ppazar · Anuncios y Comercio",
+        "description": "Marketplace cross-platform con mensajería en tiempo real comprador–vendedor, recomendaciones de vehículos con IA, anuncios verificados por EIDS y publicación en múltiples stores."
+      },
+      "spory": {
+        "title": "Spory · Salud y Actividad",
+        "description": "App de salud y actividad con flujos de plan personalizados, gestión de estado basada en BLoC e integración con Firebase."
+      },
+      "harmopy": {
+        "title": "Harmopy · IA Desarrollo Personal",
+        "description": "Plataforma web de desarrollo personal con más de 50 coaches IA, objetivos personalizados, contenidos inspiradores y seguimiento del estado emocional."
+      },
+      "accessible": {
+        "title": "Accessible Route",
+        "description": "App de descubrimiento de rutas y lugares accesibles para personas con discapacidad, desarrollada con Flutter y la API de Google Maps."
+      }
+    },
+    "links": {
+      "github": "GitHub",
+      "web": "Web",
+      "playStore": "Google Play",
+      "appStore": "App Store",
+      "appGallery": "AppGallery"
+    },
+    "ctaMore": "Ver más en GitHub"
+  },
+  "skills": {
+    "title": "Habilidades",
+    "eyebrow": "Stack técnica",
+    "subtitle": "Las herramientas y tecnologías con las que trabajo cada día.",
+    "categories": {
+      "mobile": "Móvil",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Base de datos y Cloud",
+      "ai": "IA y Datos",
+      "tools": "Herramientas"
+    },
+    "legend": {
+      "expert": "Experto",
+      "advanced": "Avanzado",
+      "intermediate": "Intermedio"
+    }
+  },
+  "services": {
+    "title": "Servicios",
+    "eyebrow": "Trabajemos juntos",
+    "subtitle": "Tres paquetes pensados según la dimensión del proyecto. Código fuente entregado en todos los casos.",
+    "popularBadge": "El más elegido",
+    "durationLabel": "Plazo",
+    "contactLabel": "Contáctame",
+    "whatsapp": "WhatsApp",
+    "email": "Correo",
+    "levels": {
+      "beginner": "Inicio",
+      "intermediate": "Profesional",
+      "advanced": "Empresa"
+    },
+    "packages": {
+      "starter": {
+        "name": "Inicio",
+        "description": "El punto de partida adecuado para productos móviles rápidos y enfocados.",
+        "features": [
+          "5–8 pantallas",
+          "Diseño de interfaz limpio y a medida",
+          "Operaciones CRUD básicas",
+          "Firebase Authentication",
+          "Base de datos Firebase Firestore",
+          "Publicación en Google Play",
+          "Entrega del código fuente"
+        ]
+      },
+      "pro": {
+        "name": "Profesional",
+        "description": "Para equipos en crecimiento y productos serios que necesitan salir al mercado.",
+        "features": [
+          "8–15 pantallas",
+          "Diseño de UI e interacciones avanzadas",
+          "Operaciones CRUD complejas",
+          "Mensajería en tiempo real",
+          "Infraestructura de push notifications",
+          "Integraciones de redes sociales",
+          "Integración de pagos",
+          "Panel de administración",
+          "Publicación en Google Play y App Store",
+          "Entrega del código fuente"
+        ]
+      },
+      "enterprise": {
+        "name": "Empresa",
+        "description": "Para plataformas de nivel empresarial que requieren escala, seguridad y longevidad.",
+        "features": [
+          "Más de 15 pantallas",
+          "Lenguaje de diseño y animaciones a medida",
+          "Arquitectura de microservicios",
+          "Sincronización de datos en tiempo real",
+          "Integración con IA / ML",
+          "Multi-plataforma iOS, Android y Web",
+          "Medidas de seguridad avanzadas",
+          "Analytics e informes",
+          "Desarrollo de API backend a medida",
+          "Publicación en todos los stores",
+          "1 mes de soporte gratuito",
+          "Entrega del código fuente",
+          "Documentación técnica"
+        ]
+      }
+    },
+    "custom": {
+      "title": "¿Tienes un proyecto a medida?",
+      "subtitle": "Si necesitas algo fuera de los paquetes estándar, hablemos directamente.",
+      "whatsappCta": "Escribir por WhatsApp",
+      "emailCta": "Enviar un correo",
+      "whatsappMessage": "Hola, me gustaría hablar sobre un proyecto a medida.",
+      "emailSubject": "Consulta de proyecto a medida"
+    },
+    "packageMessage": "Hola, me gustaría más información sobre el paquete {name}.",
+    "packageEmailSubject": "Consulta {name}"
+  },
+  "contact": {
+    "title": "Contacto",
+    "eyebrow": "Hablemos",
+    "subtitle": "Un nuevo producto, una colaboración o simplemente una charla — estoy abierto.",
+    "methods": {
+      "phone": "Teléfono",
+      "email": "Correo",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "name": "Nombre",
+      "namePlaceholder": "Tu nombre",
+      "email": "Correo",
+      "emailPlaceholder": "tu@ejemplo.com",
+      "subject": "Asunto",
+      "subjectPlaceholder": "¿De qué hablamos?",
+      "message": "Mensaje",
+      "messagePlaceholder": "Unas líneas son suficientes…",
+      "submit": "Enviar mensaje",
+      "submitting": "Enviando…"
+    },
+    "status": {
+      "success": "Mensaje recibido. Te respondo en breve.",
+      "error": "No se pudo enviar el mensaje. Por favor intenta de nuevo en un momento."
+    }
+  },
+  "footer": {
+    "tagline": "Diseño y desarrollo productos de software.",
+    "rights": "Todos los derechos reservados.",
+    "scrollTop": "Volver arriba"
+  }
+}

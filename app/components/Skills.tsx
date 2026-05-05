@@ -1,101 +1,84 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { Smartphone, Globe, Server, Database, Wrench, Brain } from 'lucide-react';
-import { PortfolioData } from '../models/PortfolioData';
+import SectionWrapper from './ui/SectionWrapper';
 import SectionHeader from './ui/SectionHeader';
-import ScrollReveal from './ui/ScrollReveal';
+import Reveal from './ui/Reveal';
+import SkillBadge from './ui/SkillBadge';
+import { PortfolioData } from '../models/PortfolioData';
+import type { SkillCategory } from '../types';
 
-const categoryConfig: Record<string, { label: string; icon: React.ReactNode }> = {
-  mobile: { label: 'Mobil', icon: <Smartphone size={18} /> },
-  frontend: { label: 'Frontend', icon: <Globe size={18} /> },
-  backend: { label: 'Backend', icon: <Server size={18} /> },
-  database: { label: 'Veritabanı ve Cloud', icon: <Database size={18} /> },
-  ai: { label: 'AI ve Veri', icon: <Brain size={18} /> },
-  tools: { label: 'Araçlar', icon: <Wrench size={18} /> },
+const data = PortfolioData.getInstance();
+
+const categoryIcon: Record<SkillCategory, React.ReactNode> = {
+  mobile: <Smartphone size={15} strokeWidth={1.75} />,
+  frontend: <Globe size={15} strokeWidth={1.75} />,
+  backend: <Server size={15} strokeWidth={1.75} />,
+  database: <Database size={15} strokeWidth={1.75} />,
+  ai: <Brain size={15} strokeWidth={1.75} />,
+  tools: <Wrench size={15} strokeWidth={1.75} />,
 };
 
-const categoryOrder = ['mobile', 'frontend', 'backend', 'database', 'ai', 'tools'];
+const categoryOrder: SkillCategory[] = [
+  'mobile',
+  'frontend',
+  'backend',
+  'database',
+  'ai',
+  'tools',
+];
 
 export default function Skills() {
-  const data = PortfolioData.getInstance();
+  const t = useTranslations('skills');
   const skills = data.getSkills();
 
-  const grouped = skills.reduce(
-    (acc, skill) => {
-      const cat = skill.category;
-      if (!acc[cat]) acc[cat] = [];
-      acc[cat].push(skill);
+  const grouped = skills.reduce<Record<SkillCategory, typeof skills>>(
+    (acc, s) => {
+      (acc[s.category] ||= []).push(s);
       return acc;
     },
-    {} as Record<string, typeof skills>
+    {} as Record<SkillCategory, typeof skills>
   );
 
   return (
-    <section id="skills" className="py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          title="Yetenekler"
-          subtitle="Kullandığım teknolojiler ve araçlar"
-        />
+    <SectionWrapper id="skills">
+      <SectionHeader
+        eyebrow={t('eyebrow')}
+        title={t('title')}
+        subtitle={t('subtitle')}
+      />
 
-        <div className="space-y-12">
-          {categoryOrder.map((category, i) => {
-            const categorySkills = grouped[category];
-            if (!categorySkills) return null;
-            const config = categoryConfig[category];
-            if (!config) return null;
-
-            return (
-              <ScrollReveal key={category} delay={i * 0.08}>
-                <div>
-                  <div className="flex items-center gap-3 mb-5">
-                    <span className="text-accent">{config.icon}</span>
-                    <h3 className="font-display text-lg font-semibold text-foreground">
-                      {config.label}
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+        {categoryOrder.map((cat, i) => {
+          const list = grouped[cat];
+          if (!list?.length) return null;
+          return (
+            <Reveal key={cat} delay={i * 0.05}>
+              <div className="rounded-3xl border border-border bg-card/50 p-6 backdrop-blur md:p-7">
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="grid h-8 w-8 place-items-center rounded-full bg-surface-2 text-foreground">
+                    {categoryIcon[cat]}
+                  </span>
+                  <div className="flex flex-1 items-center justify-between">
+                    <h3 className="font-display text-base font-medium text-foreground">
+                      {t(`categories.${cat}`)}
                     </h3>
-                    <span className="font-mono text-xs text-muted-foreground">
-                      ({categorySkills.length})
+                    <span className="font-mono text-[10px] uppercase tracking-wider text-foreground-subtle">
+                      {String(list.length).padStart(2, '0')}
                     </span>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {categorySkills.map((skill) => (
-                      <span
-                        key={skill.id}
-                        className={`font-mono text-xs px-3 py-1.5 rounded border transition-colors ${
-                          skill.level === 'expert'
-                            ? 'border-accent text-accent'
-                            : skill.level === 'advanced'
-                            ? 'border-foreground/30 text-foreground'
-                            : 'border-border text-muted-foreground'
-                        }`}
-                      >
-                        {skill.name}
-                      </span>
-                    ))}
-                  </div>
                 </div>
-              </ScrollReveal>
-            );
-          })}
-        </div>
-
-        <ScrollReveal delay={0.3}>
-          <div className="mt-12 pt-8 border-t border-border flex flex-wrap gap-6">
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full border-2 border-accent" />
-              <span className="font-mono text-xs text-muted-foreground">Uzman</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full border-2 border-foreground/30" />
-              <span className="font-mono text-xs text-muted-foreground">İleri</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-3 h-3 rounded-full border-2 border-border" />
-              <span className="font-mono text-xs text-muted-foreground">Orta</span>
-            </div>
-          </div>
-        </ScrollReveal>
+                <div className="flex flex-wrap gap-1.5">
+                  {list.map((s) => (
+                    <SkillBadge key={s.id} name={s.name} />
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          );
+        })}
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

@@ -1,41 +1,69 @@
+export type ProjectKey =
+  | 'lawantra'
+  | 'dreeys'
+  | 'coachun'
+  | 'ppazar'
+  | 'spory'
+  | 'harmopy'
+  | 'accessible';
+
+export type ExperienceKey = 'lawantra' | 'appgamedo' | 'freelance' | 'yandex';
+
+export type EducationKey = 'ege' | 'istanbul';
+
+export type LanguageKey = 'tr' | 'en';
+
+export type ServiceKey = 'starter' | 'pro' | 'enterprise';
+
+export type SkillCategory =
+  | 'mobile'
+  | 'frontend'
+  | 'backend'
+  | 'database'
+  | 'ai'
+  | 'tools';
+
+export type SkillLevel = 'beginner' | 'intermediate' | 'advanced' | 'expert';
+
 export interface Project {
-  id: string;
-  title: string;
-  description: string;
+  key: ProjectKey;
   technologies: string[];
+  category: 'mobile' | 'web' | 'other';
   imageUrl?: string;
+  imageInvertOnDark?: boolean;
   githubUrl?: string;
   liveUrl?: string;
   appStoreUrl?: string;
   huaweiUrl?: string;
-  category: 'mobile' | 'web' | 'other';
+  featured?: boolean;
 }
 
 export interface Experience {
-  id: string;
-  title: string;
-  company: string;
-  period: string;
-  description: string;
+  key: ExperienceKey;
   technologies: string[];
   link?: string;
-  type?: string;
-  location?: string;
+  logoUrl?: string;
+  logoInvertOnDark?: boolean;
+}
+
+export interface Education {
+  key: EducationKey;
 }
 
 export interface Skill {
   id: string;
   name: string;
-  level: 'beginner' | 'intermediate' | 'advanced' | 'expert';
-  category: 'frontend' | 'backend' | 'mobile' | 'database' | 'tools' | 'ai' | 'other';
+  level: SkillLevel;
+  category: SkillCategory;
 }
 
-export interface Education {
-  id: string;
-  degree: string;
-  institution: string;
-  period: string;
-  description?: string;
+export interface Service {
+  key: ServiceKey;
+  level: 'beginner' | 'intermediate' | 'advanced';
+  price: string;
+  duration: string;
+  technologies: string[];
+  featured?: boolean;
 }
 
 export interface ContactInfo {
@@ -45,25 +73,7 @@ export interface ContactInfo {
   linkedin: string;
 }
 
-export interface NavItem {
-  id: string;
-  label: string;
-  href: string;
-}
-
-export interface Section {
-  id: string;
-  title: string;
-  description?: string;
-}
-
-export interface Service {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  duration: string;
-  level: 'beginner' | 'intermediate' | 'advanced';
-  features: string[];
-  technologies: string[];
+export interface HeroStat {
+  key: 'apps' | 'years' | 'coaches' | 'users' | 'ai';
+  value: string;
 }

@@ -1,130 +1,176 @@
 'use client';
 
+import { useRef } from 'react';
 import Image from 'next/image';
-import { ExternalLink } from 'lucide-react';
-import { FaLaptopCode } from 'react-icons/fa';
-import { PortfolioData } from '../models/PortfolioData';
+import { useTranslations } from 'next-intl';
+import { ExternalLink, Briefcase } from 'lucide-react';
+import { useGSAP } from '@gsap/react';
+import SectionWrapper from './ui/SectionWrapper';
 import SectionHeader from './ui/SectionHeader';
-import ScrollReveal from './ui/ScrollReveal';
+import Reveal from './ui/Reveal';
+import { gsap } from '../lib/gsap';
+import { PortfolioData } from '../models/PortfolioData';
 
-const companyLogoMap: Record<string, string> = {
-  '1': '/lawantra-logo.svg',
-  '2': '/appgamedo-logo.webp',
-  '4': '/yandex-logo.png',
-};
+const data = PortfolioData.getInstance();
 
 export default function Experience() {
-  const data = PortfolioData.getInstance();
+  const t = useTranslations('experience');
   const experiences = data.getExperiences();
+  const stats = data.getExperienceStats();
+  const root = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const el = root.current;
+      if (!el) return;
+      const mm = gsap.matchMedia();
+
+      mm.add('(prefers-reduced-motion: no-preference) and (min-width: 768px)', () => {
+        const line = el.querySelector<HTMLElement>('[data-timeline-line]');
+        if (!line) return;
+        gsap.fromTo(
+          line,
+          { scaleY: 0 },
+          {
+            scaleY: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 70%',
+              end: 'bottom 80%',
+              scrub: true,
+            },
+          }
+        );
+      });
+
+      return () => mm.revert();
+    },
+    { scope: root as React.RefObject<HTMLElement> }
+  );
 
   return (
-    <section id="experience" className="py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader title="Deneyim" />
+    <SectionWrapper id="experience">
+      <SectionHeader eyebrow={t('eyebrow')} title={t('title')} />
 
-        <div className="space-y-0">
+      <div ref={root} className="relative">
+        <div
+          aria-hidden
+          data-timeline-line
+          className="absolute left-[15px] top-2 hidden h-full w-px origin-top bg-gradient-to-b from-accent/60 via-border to-transparent md:block md:left-[19px]"
+        />
+
+        <ol className="space-y-14 md:space-y-16">
           {experiences.map((exp, i) => (
-            <ScrollReveal key={exp.id} delay={i * 0.1}>
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-8 py-10">
-                <div className="md:col-span-1">
-                  <span className="font-mono text-sm text-muted-foreground">
-                    {exp.period}
-                  </span>
-                </div>
-                <div className="md:col-span-3">
-                  <div className="flex items-start gap-4">
-                    {companyLogoMap[exp.id] ? (
-                      <div className="w-12 h-12 relative rounded-lg overflow-hidden bg-surface flex-shrink-0">
-                        <Image
-                          src={companyLogoMap[exp.id]}
-                          alt={exp.company}
-                          width={48}
-                          height={48}
-                          className="object-contain"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-12 h-12 rounded-lg bg-surface flex items-center justify-center flex-shrink-0">
-                        <FaLaptopCode className="text-accent" size={20} />
-                      </div>
-                    )}
-                    <div>
-                      <h3 className="font-display text-xl font-semibold text-foreground">
-                        {exp.title}
-                      </h3>
-                      <div className="flex flex-wrap items-center gap-2 mt-1">
-                        {exp.link ? (
-                          <a
-                            href={exp.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-accent font-body font-medium inline-flex items-center gap-1 hover:underline"
-                          >
-                            {exp.company}
-                            <ExternalLink size={12} />
-                          </a>
-                        ) : (
-                          <span className="text-accent font-body font-medium">
-                            {exp.company}
-                          </span>
-                        )}
-                        {exp.type && (
-                          <span className="font-mono text-xs text-muted-foreground border border-border px-2 py-0.5 rounded">
-                            {exp.type}
-                          </span>
-                        )}
-                        {exp.location && (
-                          <span className="font-mono text-xs text-muted-foreground">
-                            · {exp.location}
-                          </span>
-                        )}
+            <li key={exp.key}>
+              <Reveal delay={i * 0.05}>
+                <article className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
+                  <div className="md:col-span-3">
+                    <div className="relative md:pl-12">
+                      <span
+                        aria-hidden
+                        className="absolute left-0 top-1.5 hidden h-2.5 w-2.5 rounded-full bg-accent ring-4 ring-accent/15 md:block md:left-3.5"
+                      />
+                      <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-foreground-muted">
+                        {t(`items.${exp.key}.period`)}
+                      </span>
+                      <div className="mt-2 hidden gap-2 text-[11px] text-foreground-subtle md:flex md:flex-col">
+                        <span>{t(`items.${exp.key}.type`)}</span>
+                        <span>{t(`items.${exp.key}.location`)}</span>
                       </div>
                     </div>
                   </div>
-                  <div className="text-muted-foreground mt-4 leading-relaxed space-y-2">
-                    {exp.description.split('\n').map((paragraph, idx) => (
-                      <p key={idx}>{paragraph}</p>
-                    ))}
+
+                  <div className="md:col-span-9">
+                    <div className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur transition-all duration-500 hover:border-border-strong hover:shadow-soft-md md:p-8">
+                      <div className="flex items-start gap-4">
+                        {exp.logoUrl ? (
+                          <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-xl border border-border bg-surface">
+                            <Image
+                              src={exp.logoUrl}
+                              alt={t(`items.${exp.key}.company`)}
+                              width={32}
+                              height={32}
+                              className="h-8 w-8 object-contain"
+                            />
+                          </div>
+                        ) : (
+                          <div className="grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-border bg-surface text-foreground-muted">
+                            <Briefcase size={16} strokeWidth={1.75} />
+                          </div>
+                        )}
+                        <div className="flex-1">
+                          <h3 className="font-display text-lg font-medium tracking-tight text-foreground md:text-xl">
+                            {t(`items.${exp.key}.title`)}
+                          </h3>
+                          <div className="mt-1.5 flex flex-wrap items-center gap-2">
+                            {exp.link ? (
+                              <a
+                                href={exp.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 text-sm font-medium text-accent hover:underline"
+                              >
+                                {t(`items.${exp.key}.company`)}
+                                <ExternalLink size={11} strokeWidth={2} />
+                              </a>
+                            ) : (
+                              <span className="text-sm font-medium text-accent">
+                                {t(`items.${exp.key}.company`)}
+                              </span>
+                            )}
+                            <span className="text-foreground-subtle">·</span>
+                            <span className="text-xs text-foreground-muted md:hidden">
+                              {t(`items.${exp.key}.period`)}
+                            </span>
+                            <span className="hidden text-xs text-foreground-muted md:inline">
+                              {t(`items.${exp.key}.location`)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="mt-5 space-y-3 text-sm leading-relaxed text-foreground-muted md:text-[15px]">
+                        {t
+                          .raw(`items.${exp.key}.descriptionParagraphs`)
+                          .map((p: string, idx: number) => (
+                            <p key={idx}>{p}</p>
+                          ))}
+                      </div>
+
+                      <div className="mt-5 flex flex-wrap gap-1.5">
+                        {exp.technologies.map((tech) => (
+                          <span
+                            key={tech}
+                            className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-foreground-muted"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-2 mt-4">
-                    {exp.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground border border-border px-3 py-1 rounded"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+                </article>
+              </Reveal>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <Reveal delay={0.1}>
+        <div className="mt-20 grid grid-cols-2 gap-6 border-t border-border pt-12 md:grid-cols-4">
+          {stats.map((s) => (
+            <div key={s.key}>
+              <div className="font-display text-3xl font-medium tracking-tight text-foreground md:text-4xl">
+                {s.value}
               </div>
-              {i < experiences.length - 1 && (
-                <div className="border-b border-border" />
-              )}
-            </ScrollReveal>
+              <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground-subtle">
+                {t(`stats.${s.key}`)}
+              </div>
+            </div>
           ))}
         </div>
-
-        <ScrollReveal delay={0.2}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-8 border-t border-border">
-            {[
-              { value: '10+', label: 'Mobil Uygulama' },
-              { value: '2.5+', label: 'Yıl Deneyim' },
-              { value: '100+', label: 'Koç' },
-              { value: '200+', label: 'Kullanıcı' },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center md:text-left">
-                <span className="font-display text-3xl md:text-4xl font-bold text-foreground">
-                  {stat.value}
-                </span>
-                <p className="font-mono text-xs uppercase tracking-[0.15em] text-muted-foreground mt-2">
-                  {stat.label}
-                </p>
-              </div>
-            ))}
-          </div>
-        </ScrollReveal>
-      </div>
-    </section>
+      </Reveal>
+    </SectionWrapper>
   );
 }

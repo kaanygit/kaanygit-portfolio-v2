@@ -1,14 +1,19 @@
 'use client';
 
 import { useState } from 'react';
-import { Phone, Mail, Github, Linkedin, Send } from 'lucide-react';
-import { PortfolioData } from '../models/PortfolioData';
+import { useTranslations } from 'next-intl';
+import { Phone, Mail, Github, Linkedin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import SectionWrapper from './ui/SectionWrapper';
 import SectionHeader from './ui/SectionHeader';
-import ScrollReveal from './ui/ScrollReveal';
+import Reveal from './ui/Reveal';
+import { PortfolioData } from '../models/PortfolioData';
+
+const data = PortfolioData.getInstance();
 
 export default function Contact() {
-  const data = PortfolioData.getInstance();
-  const contactInfo = data.getContactInfo();
+  const t = useTranslations('contact');
+  const contact = data.getContactInfo();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -16,196 +21,239 @@ export default function Contact() {
     subject: '',
     message: '',
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
+    setSubmitting(true);
+    setStatus('idle');
     try {
-      const response = await fetch('/api/contact', {
+      const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       });
-
-      if (response.ok) {
-        setSubmitStatus('success');
+      if (res.ok) {
+        setStatus('success');
         setFormData({ name: '', email: '', subject: '', message: '' });
       } else {
-        setSubmitStatus('error');
-        setErrorMessage('Mesaj gönderilemedi. Lütfen tekrar deneyin.');
+        setStatus('error');
       }
     } catch {
-      setSubmitStatus('error');
-      setErrorMessage('Bir hata oluştu. Lütfen tekrar deneyin.');
+      setStatus('error');
     } finally {
-      setIsSubmitting(false);
+      setSubmitting(false);
     }
   };
 
-  const contactMethods = [
+  const methods = [
     {
-      icon: <Phone size={18} />,
-      label: 'Telefon',
-      value: contactInfo.phone,
-      href: `tel:${contactInfo.phone.replace(/\s/g, '')}`,
+      icon: <Mail size={15} strokeWidth={1.75} />,
+      label: t('methods.email'),
+      value: contact.email,
+      href: `mailto:${contact.email}`,
     },
     {
-      icon: <Mail size={18} />,
-      label: 'E-posta',
-      value: contactInfo.email,
-      href: `mailto:${contactInfo.email}`,
+      icon: <Phone size={15} strokeWidth={1.75} />,
+      label: t('methods.phone'),
+      value: contact.phone,
+      href: `tel:${contact.phone.replace(/\s/g, '')}`,
     },
     {
-      icon: <Github size={18} />,
-      label: 'GitHub',
-      value: contactInfo.github,
-      href: `https://${contactInfo.github}`,
+      icon: <Github size={15} strokeWidth={1.75} />,
+      label: t('methods.github'),
+      value: '@kaanygit',
+      href: `https://${contact.github}`,
     },
     {
-      icon: <Linkedin size={18} />,
-      label: 'LinkedIn',
-      value: 'LinkedIn',
-      href: `https://${contactInfo.linkedin}`,
+      icon: <Linkedin size={15} strokeWidth={1.75} />,
+      label: t('methods.linkedin'),
+      value: 'yasinkaanyigit1',
+      href: `https://${contact.linkedin}`,
     },
   ];
 
   return (
-    <section id="contact" className="py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-6">
-        <SectionHeader
-          title="İletişim"
-          subtitle="Bir projeniz mi var? Birlikte çalışalım."
-        />
+    <SectionWrapper id="contact">
+      <SectionHeader
+        eyebrow={t('eyebrow')}
+        title={t('title')}
+        subtitle={t('subtitle')}
+      />
 
-        {/* Contact Methods */}
-        <ScrollReveal>
-          <div className="flex flex-wrap gap-6 mb-16">
-            {contactMethods.map((method) => (
+      <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
+        <Reveal className="lg:col-span-5">
+          <div className="space-y-3">
+            {methods.map((m) => (
               <a
-                key={method.label}
-                href={method.href}
-                target={method.href.startsWith('http') ? '_blank' : undefined}
-                rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="flex items-center gap-3 text-muted-foreground hover:text-foreground transition-colors group"
+                key={m.label}
+                href={m.href}
+                target={m.href.startsWith('http') ? '_blank' : undefined}
+                rel={m.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="group flex items-center gap-4 rounded-2xl border border-border bg-card/50 p-4 backdrop-blur transition-all duration-300 hover:border-border-strong hover:bg-card"
               >
-                <span className="text-accent group-hover:text-accent">
-                  {method.icon}
+                <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-soft text-accent transition-transform duration-300 group-hover:scale-105">
+                  {m.icon}
                 </span>
-                <span className="font-mono text-sm">{method.value}</span>
+                <div className="min-w-0 flex-1">
+                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground-subtle">
+                    {m.label}
+                  </div>
+                  <div className="mt-0.5 truncate text-sm font-medium text-foreground">
+                    {m.value}
+                  </div>
+                </div>
               </a>
             ))}
           </div>
-        </ScrollReveal>
+        </Reveal>
 
-        {/* Form */}
-        <ScrollReveal delay={0.1}>
-          <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2"
-                >
-                  İsim
-                </label>
-                <input
-                  id="name"
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) =>
-                    setFormData({ ...formData, name: e.target.value })
-                  }
-                  className="w-full bg-transparent border-b border-border focus:border-accent outline-none py-3 text-foreground placeholder:text-muted-foreground/50 transition-colors"
-                  placeholder="Adınız"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2"
-                >
-                  E-posta
-                </label>
-                <input
-                  id="email"
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) =>
-                    setFormData({ ...formData, email: e.target.value })
-                  }
-                  className="w-full bg-transparent border-b border-border focus:border-accent outline-none py-3 text-foreground placeholder:text-muted-foreground/50 transition-colors"
-                  placeholder="E-posta adresiniz"
-                />
-              </div>
+        <Reveal className="lg:col-span-7" delay={0.1}>
+          <form
+            onSubmit={handleSubmit}
+            className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur md:p-8"
+          >
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <Field
+                id="name"
+                label={t('form.name')}
+                placeholder={t('form.namePlaceholder')}
+                value={formData.name}
+                onChange={(v) => setFormData({ ...formData, name: v })}
+              />
+              <Field
+                id="email"
+                type="email"
+                label={t('form.email')}
+                placeholder={t('form.emailPlaceholder')}
+                value={formData.email}
+                onChange={(v) => setFormData({ ...formData, email: v })}
+              />
             </div>
 
-            <div>
-              <label
-                htmlFor="subject"
-                className="block font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2"
-              >
-                Konu
-              </label>
-              <input
+            <div className="mt-5">
+              <Field
                 id="subject"
-                type="text"
-                required
+                label={t('form.subject')}
+                placeholder={t('form.subjectPlaceholder')}
                 value={formData.subject}
-                onChange={(e) =>
-                  setFormData({ ...formData, subject: e.target.value })
-                }
-                className="w-full bg-transparent border-b border-border focus:border-accent outline-none py-3 text-foreground placeholder:text-muted-foreground/50 transition-colors"
-                placeholder="Proje konusu"
+                onChange={(v) => setFormData({ ...formData, subject: v })}
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="message"
-                className="block font-mono text-xs uppercase tracking-wider text-muted-foreground mb-2"
-              >
-                Mesaj
-              </label>
-              <textarea
+            <div className="mt-5">
+              <Field
                 id="message"
-                required
+                multiline
                 rows={5}
+                label={t('form.message')}
+                placeholder={t('form.messagePlaceholder')}
                 value={formData.message}
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
-                className="w-full bg-transparent border-b border-border focus:border-accent outline-none py-3 text-foreground placeholder:text-muted-foreground/50 transition-colors resize-none"
-                placeholder="Mesajınız..."
+                onChange={(v) => setFormData({ ...formData, message: v })}
               />
             </div>
 
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="inline-flex items-center gap-2 bg-accent text-white px-8 py-3 rounded-lg font-body font-medium text-sm hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isSubmitting ? 'Gönderiliyor...' : 'Mesaj Gönder'}
-              <Send size={14} />
-            </button>
+            <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
+              <button
+                type="submit"
+                disabled={submitting}
+                className="focus-ring group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {submitting ? t('form.submitting') : t('form.submit')}
+                <Send
+                  size={13}
+                  strokeWidth={2}
+                  className="transition-transform duration-300 group-hover:translate-x-0.5"
+                />
+              </button>
 
-            {submitStatus === 'success' && (
-              <p className="text-accent font-body text-sm">
-                Mesajınız başarıyla gönderildi!
-              </p>
-            )}
-            {submitStatus === 'error' && (
-              <p className="text-red-500 font-body text-sm">{errorMessage}</p>
-            )}
+              <AnimatePresence mode="wait">
+                {status === 'success' && (
+                  <motion.div
+                    key="ok"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="inline-flex items-center gap-2 text-sm text-accent"
+                  >
+                    <CheckCircle2 size={15} strokeWidth={1.75} />
+                    {t('status.success')}
+                  </motion.div>
+                )}
+                {status === 'error' && (
+                  <motion.div
+                    key="err"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0 }}
+                    className="inline-flex items-center gap-2 text-sm text-red-500"
+                  >
+                    <AlertCircle size={15} strokeWidth={1.75} />
+                    {t('status.error')}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </form>
-        </ScrollReveal>
+        </Reveal>
       </div>
-    </section>
+    </SectionWrapper>
+  );
+}
+
+interface FieldProps {
+  id: string;
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  placeholder?: string;
+  type?: string;
+  multiline?: boolean;
+  rows?: number;
+}
+
+function Field({
+  id,
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = 'text',
+  multiline,
+  rows,
+}: FieldProps) {
+  const baseCls =
+    'mt-2 w-full rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-foreground-subtle outline-none transition-all duration-200 focus:border-accent focus:bg-card focus:shadow-soft-glow';
+  return (
+    <div>
+      <label
+        htmlFor={id}
+        className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground-muted"
+      >
+        {label}
+      </label>
+      {multiline ? (
+        <textarea
+          id={id}
+          required
+          rows={rows}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className={`${baseCls} resize-none`}
+        />
+      ) : (
+        <input
+          id={id}
+          type={type}
+          required
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          className={baseCls}
+        />
+      )}
+    </div>
   );
 }

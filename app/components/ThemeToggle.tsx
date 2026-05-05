@@ -1,30 +1,52 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { Sun, Moon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Sun, Moon, Monitor } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useThemeStore } from '../store/useThemeStore';
 
 export default function ThemeToggle() {
-  const { theme, toggleTheme } = useThemeStore();
+  const mode = useThemeStore((s) => s.mode);
+  const cycle = useThemeStore((s) => s.cycle);
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations('nav');
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   if (!mounted) {
-    return <div className="w-9 h-9" />;
+    return <div className="h-9 w-9" aria-hidden="true" />;
   }
+
+  const Icon = mode === 'system' ? Monitor : mode === 'dark' ? Moon : Sun;
+  const label =
+    mode === 'system'
+      ? t('themeLight')
+      : mode === 'light'
+      ? t('themeDark')
+      : t('themeSystem');
 
   return (
     <motion.button
-      onClick={toggleTheme}
-      className="w-9 h-9 flex items-center justify-center rounded-lg border border-border text-foreground hover:text-accent transition-colors"
-      whileTap={{ scale: 0.92 }}
-      aria-label={theme === 'dark' ? 'Açık moda geç' : 'Karanlık moda geç'}
+      type="button"
+      onClick={cycle}
+      whileTap={{ scale: 0.94 }}
+      aria-label={label}
+      title={label}
+      className="focus-ring relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/60 text-foreground-muted transition-colors hover:border-border-strong hover:text-foreground"
     >
-      {theme === 'dark' ? <Sun size={16} /> : <Moon size={16} />}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span
+          key={mode}
+          initial={{ opacity: 0, rotate: -45, scale: 0.7 }}
+          animate={{ opacity: 1, rotate: 0, scale: 1 }}
+          exit={{ opacity: 0, rotate: 45, scale: 0.7 }}
+          transition={{ duration: 0.22, ease: [0.25, 0.1, 0.25, 1] }}
+          className="absolute inset-0 flex items-center justify-center"
+        >
+          <Icon size={15} strokeWidth={1.75} />
+        </motion.span>
+      </AnimatePresence>
     </motion.button>
   );
 }

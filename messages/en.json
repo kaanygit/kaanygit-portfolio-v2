@@ -1,0 +1,299 @@
+{
+  "meta": {
+    "title": "Yasin Kaan Yiğit — Full-Stack & Mobile Engineer",
+    "description": "A software engineer designing and building refined mobile and web experiences end-to-end, with performant systems and clean interfaces.",
+    "ogSiteName": "Yasin Kaan Yiğit · Portfolio"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "skills": "Skills",
+    "services": "Services",
+    "contact": "Contact",
+    "themeSystem": "Switch to system theme",
+    "themeLight": "Switch to light theme",
+    "themeDark": "Switch to dark theme",
+    "languageLabel": "Select language",
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "hero": {
+    "eyebrow": "Full-Stack & Mobile Engineer",
+    "headlineLine1": "Yasin Kaan",
+    "headlineLine2": "Yiğit.",
+    "summary": "I build mobile apps with Flutter, modern web interfaces with Next.js and React, and scalable backend services with Node.js, PostgreSQL and Docker. End-to-end product experience across AI products, legaltech platforms, marketplaces, and coaching solutions.",
+    "ctaPrimary": "View Selected Work",
+    "ctaSecondary": "Get in Touch",
+    "stats": {
+      "apps": "Products shipped",
+      "years": "Years of experience",
+      "coaches": "Active coaches",
+      "users": "Active users",
+      "ai": "AI-powered products"
+    },
+    "availability": "Open to new projects",
+    "location": "İzmir",
+    "cards": {
+      "lawantra": { "tag": "Legaltech" },
+      "dreeys": { "tag": "AI Coach" },
+      "coachun": { "tag": "Coaching" }
+    },
+    "marqueeLabel": "Technologies I work with",
+    "scrollHint": "Scroll"
+  },
+  "about": {
+    "title": "About",
+    "eyebrow": "Profile",
+    "paragraph1": "I build mobile apps with Flutter, modern web interfaces with Next.js and React, and scalable backend services with Node.js, PostgreSQL and Docker. I treat software as a product to keep refining, not a deliverable to ship and forget.",
+    "paragraph2": "I've shipped AI-powered products, legaltech platforms, marketplaces, and coaching tools end-to-end. I enjoy thinking across the full stack — from architecture down to interface details.",
+    "languagesTitle": "Languages",
+    "educationTitle": "Education",
+    "languages": {
+      "tr": { "name": "Turkish", "level": "Native" },
+      "en": { "name": "English", "level": "B1 — Professional working proficiency" }
+    },
+    "education": {
+      "ege": {
+        "degree": "Mathematics · BSc",
+        "institution": "Ege University · İzmir",
+        "period": "Sep 2020 – Jul 2025",
+        "description": "Core undergraduate program focused on analytical thinking, problem solving, and mathematical modeling."
+      },
+      "istanbul": {
+        "degree": "Computer Programming · Associate",
+        "institution": "Istanbul University · Istanbul",
+        "period": "Sep 2022 – Jun 2025",
+        "description": "Hands-on program covering data structures, algorithms, and modern software development practices."
+      }
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "eyebrow": "Journey",
+    "items": {
+      "lawantra": {
+        "title": "Software Developer",
+        "company": "Lawantra",
+        "period": "Aug 2025 – Present",
+        "type": "Full-time",
+        "location": "Remote · İzmir",
+        "descriptionParagraphs": [
+          "Building product features across web, backend, and mobile for a legaltech platform with Next.js, Node.js, Firebase, REST APIs, and Flutter.",
+          "Designing end-to-end flows for AI-assisted legal workflows, secure document processes, KVKK-compliant data privacy, and automation tools for lawyers.",
+          "Contributing to mobile development, frontend architecture, backend integrations, and continuous improvement of the live web platform."
+        ]
+      },
+      "appgamedo": {
+        "title": "Software Developer",
+        "company": "Appgamedo",
+        "period": "Aug 2025 – Present",
+        "type": "Full-time",
+        "location": "Remote",
+        "descriptionParagraphs": [
+          "Building coach discovery, secure messaging, scheduling, video sessions, personalized recommendations, and multilingual product flows on Coachun.",
+          "Directly contributing to growth of a product serving 100+ coaches and 200+ active users.",
+          "Working across mobile, frontend, backend, and database layers — keeping performance and user experience first."
+        ]
+      },
+      "freelance": {
+        "title": "Freelance Software Developer",
+        "company": "Independent",
+        "period": "Jun 2024 – Present",
+        "type": "Freelance",
+        "location": "Remote",
+        "descriptionParagraphs": [
+          "Built 10+ mobile apps with Flutter, Dart, Firebase, REST APIs, BLoC, and MVC.",
+          "Shipped products across marketplaces, health, accessibility, coaching, AI productivity, and legaltech.",
+          "Owned authentication, Firestore data modeling, real-time messaging, push notifications, REST API integrations, and store release pipelines end-to-end."
+        ]
+      },
+      "yandex": {
+        "title": "Search Engine Quality Development Specialist",
+        "company": "Yandex",
+        "period": "Jan 2025 – May 2025",
+        "type": "Full-time",
+        "location": "Remote",
+        "descriptionParagraphs": [
+          "Analyzed search result quality, relevance, query intent, and guideline alignment through systematic QA processes.",
+          "Provided data-driven feedback and product recommendations to improve search experience and result quality."
+        ]
+      }
+    },
+    "stats": {
+      "apps": "Mobile apps",
+      "years": "Years of experience",
+      "coaches": "Coaches",
+      "users": "Users"
+    }
+  },
+  "projects": {
+    "title": "Selected Work",
+    "eyebrow": "Work",
+    "subtitle": "A selection of products I've built end-to-end — from design to delivery.",
+    "items": {
+      "lawantra": {
+        "title": "Lawantra · AI Legaltech Platform",
+        "description": "An active legaltech platform with document automation, secure workflows, AI-assisted legal operations, and connected mobile flows."
+      },
+      "dreeys": {
+        "title": "Dreeys AI · Goal Tracker & Coach",
+        "description": "AI-powered goal tracking and coaching app with tasks, habits, reminders, focus sessions, rewards, Apple Sign In, IAP, and 7-language support."
+      },
+      "coachun": {
+        "title": "Coachun · Coaching Platform",
+        "description": "Coaching platform serving 100+ coaches and 200+ users — discovery, secure messaging, scheduling, video, and personalized recommendations."
+      },
+      "ppazar": {
+        "title": "ppazar · Listings & Trade",
+        "description": "Cross-platform marketplace with real-time buyer–seller messaging, AI-assisted vehicle suggestions, EIDS-verified listings, and multi-store releases."
+      },
+      "spory": {
+        "title": "Spory · Health & Activity",
+        "description": "Health and activity app with personalized plan flows, BLoC-based state management, and Firebase integration."
+      },
+      "harmopy": {
+        "title": "Harmopy · AI Personal Growth",
+        "description": "Personal growth web platform with 50+ AI coaches, personalized goals, inspiring content, and emotional state tracking."
+      },
+      "accessible": {
+        "title": "Accessible Route",
+        "description": "Accessible route and venue discovery app for people with disabilities, built with Flutter and the Google Maps API."
+      }
+    },
+    "links": {
+      "github": "GitHub",
+      "web": "Web",
+      "playStore": "Google Play",
+      "appStore": "App Store",
+      "appGallery": "AppGallery"
+    },
+    "ctaMore": "See more on GitHub"
+  },
+  "skills": {
+    "title": "Skills",
+    "eyebrow": "Tech Stack",
+    "subtitle": "Tools and technologies I work with day to day.",
+    "categories": {
+      "mobile": "Mobile",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "database": "Database & Cloud",
+      "ai": "AI & Data",
+      "tools": "Tools"
+    },
+    "legend": {
+      "expert": "Expert",
+      "advanced": "Advanced",
+      "intermediate": "Intermediate"
+    }
+  },
+  "services": {
+    "title": "Services",
+    "eyebrow": "Let's Work Together",
+    "subtitle": "Three packages scaled to your project. Source code delivered with every tier.",
+    "popularBadge": "Most popular",
+    "durationLabel": "Timeline",
+    "contactLabel": "Get in touch",
+    "whatsapp": "WhatsApp",
+    "email": "Email",
+    "levels": {
+      "beginner": "Starter",
+      "intermediate": "Professional",
+      "advanced": "Enterprise"
+    },
+    "packages": {
+      "starter": {
+        "name": "Starter",
+        "description": "The right starting point for fast and focused mobile products.",
+        "features": [
+          "5–8 screen application",
+          "Clean, custom interface design",
+          "Core CRUD operations",
+          "Firebase Authentication",
+          "Firebase Firestore database",
+          "Google Play release",
+          "Source code delivery"
+        ]
+      },
+      "pro": {
+        "name": "Professional",
+        "description": "For growing teams and serious products that need to ship.",
+        "features": [
+          "8–15 screen application",
+          "Advanced UI and interaction design",
+          "Complex CRUD operations",
+          "Real-time messaging",
+          "Push notification infrastructure",
+          "Social media integrations",
+          "Payment system integration",
+          "Admin panel",
+          "Google Play & App Store release",
+          "Source code delivery"
+        ]
+      },
+      "enterprise": {
+        "name": "Enterprise",
+        "description": "For enterprise-grade platforms that need scale, security, and longevity.",
+        "features": [
+          "15+ screen application",
+          "Custom design language and animations",
+          "Microservice architecture",
+          "Real-time data synchronization",
+          "AI / ML integration",
+          "iOS, Android, and Web multi-platform",
+          "Advanced security measures",
+          "Analytics and reporting",
+          "Custom backend API development",
+          "Release on every store",
+          "1 month of free support",
+          "Source code delivery",
+          "Technical documentation"
+        ]
+      }
+    },
+    "custom": {
+      "title": "Have a custom project?",
+      "subtitle": "If you need something outside the standard packages, let's talk directly.",
+      "whatsappCta": "Message on WhatsApp",
+      "emailCta": "Send an email",
+      "whatsappMessage": "Hi, I'd like to talk about a custom project.",
+      "emailSubject": "Custom project inquiry"
+    },
+    "packageMessage": "Hi, I'd like to learn more about the {name} package.",
+    "packageEmailSubject": "{name} inquiry"
+  },
+  "contact": {
+    "title": "Contact",
+    "eyebrow": "Let's Talk",
+    "subtitle": "A new product, a collaboration, or just a quick conversation — I'm open to all of it.",
+    "methods": {
+      "phone": "Phone",
+      "email": "Email",
+      "github": "GitHub",
+      "linkedin": "LinkedIn"
+    },
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "subject": "Subject",
+      "subjectPlaceholder": "What should we talk about?",
+      "message": "Message",
+      "messagePlaceholder": "A few sentences will do…",
+      "submit": "Send message",
+      "submitting": "Sending…"
+    },
+    "status": {
+      "success": "Message received. I'll get back to you shortly.",
+      "error": "Couldn't send the message. Please try again in a moment."
+    }
+  },
+  "footer": {
+    "tagline": "I design and build software products.",
+    "rights": "All rights reserved.",
+    "scrollTop": "Back to top"
+  }
+}

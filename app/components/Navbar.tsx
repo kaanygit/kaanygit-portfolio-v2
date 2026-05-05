@@ -1,139 +1,161 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import clsx from 'clsx';
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
 
-const navItems = [
-  { id: 'home', label: 'Ana Sayfa', href: '#home' },
-  { id: 'about', label: 'Hakkımda', href: '#about' },
-  { id: 'experience', label: 'Deneyim', href: '#experience' },
-  { id: 'projects', label: 'Projeler', href: '#projects' },
-  { id: 'skills', label: 'Yetenekler', href: '#skills' },
-  { id: 'services', label: 'Hizmetler', href: '#services' },
-  { id: 'contact', label: 'İletişim', href: '#contact' },
-];
+const sectionIds = [
+  'home',
+  'about',
+  'experience',
+  'projects',
+  'skills',
+  'services',
+  'contact',
+] as const;
+
+type SectionId = (typeof sectionIds)[number];
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
+  const t = useTranslations('nav');
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState<SectionId>('home');
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-
-      const sections = navItems.map((item) => item.id);
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.getBoundingClientRect().top <= 120) {
-          setActiveSection(sections[i]);
-          break;
-        }
+    const onScroll = () => {
+      setScrolled(window.scrollY > 24);
+      let current: SectionId = 'home';
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= 140) current = id;
       }
+      setActive(current);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const id = href.replace('#', '');
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMobileMenuOpen(false);
+  const goTo = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setOpen(false);
   };
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled
-            ? 'bg-background/95 backdrop-blur-sm border-b border-border'
-            : 'bg-transparent'
-        }`}
+      <motion.header
+        initial={{ y: -56, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1], delay: 0.2 }}
+        className={clsx(
+          'fixed inset-x-0 top-0 z-50 transition-all duration-500',
+          scrolled ? 'pt-2' : 'pt-3 md:pt-4'
+        )}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <nav
+          className={clsx(
+            'mx-auto flex h-14 max-w-6xl items-center justify-between gap-4 rounded-full px-4 transition-all duration-500 md:px-5',
+            scrolled
+              ? 'glass shadow-soft-md mx-3 md:mx-auto'
+              : 'border border-transparent'
+          )}
+        >
           <button
-            onClick={() => scrollToSection('#home')}
-            className="font-display font-bold text-lg text-foreground hover:text-accent transition-colors"
+            onClick={() => goTo('home')}
+            className="focus-ring inline-flex items-center gap-2 rounded-full px-2 py-1"
+            aria-label="Yasin Kaan Yiğit"
           >
-            YKY
+            <span className="grid h-7 w-7 place-items-center rounded-full bg-foreground font-display text-[11px] font-semibold tracking-tight text-background">
+              YK
+            </span>
+            <span className="hidden font-display text-sm font-medium tracking-tight text-foreground md:inline">
+              Yasin Kaan
+            </span>
           </button>
 
-          <div className="hidden md:flex items-center gap-8">
-            {navItems.map((item) => (
+          <div className="hidden items-center gap-1 lg:flex">
+            {sectionIds.map((id) => (
               <button
-                key={item.id}
-                onClick={() => scrollToSection(item.href)}
-                className="relative"
+                key={id}
+                onClick={() => goTo(id)}
+                className={clsx(
+                  'focus-ring relative rounded-full px-3.5 py-1.5 text-[13px] font-medium transition-colors',
+                  active === id
+                    ? 'text-foreground'
+                    : 'text-foreground-muted hover:text-foreground'
+                )}
               >
-                <span
-                  className={`font-mono text-xs uppercase tracking-[0.15em] transition-colors ${
-                    activeSection === item.id
-                      ? 'text-accent'
-                      : 'text-muted-foreground hover:text-foreground'
-                  }`}
-                >
-                  {item.label}
-                </span>
-                {activeSection === item.id && (
-                  <motion.div
-                    layoutId="nav-indicator"
-                    className="absolute -bottom-1 left-0 right-0 h-[2px] bg-accent"
-                    transition={{ duration: 0.3 }}
+                {active === id && (
+                  <motion.span
+                    layoutId="nav-pill"
+                    transition={{ type: 'spring', bounce: 0.2, duration: 0.5 }}
+                    className="absolute inset-0 -z-10 rounded-full bg-surface"
                   />
                 )}
+                {t(id)}
               </button>
             ))}
-            <ThemeToggle />
           </div>
 
-          <div className="flex items-center gap-3 md:hidden">
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
             <ThemeToggle />
             <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="w-9 h-9 flex items-center justify-center text-foreground"
+              type="button"
+              onClick={() => setOpen((o) => !o)}
+              aria-label={open ? t('menuClose') : t('menuOpen')}
+              className="focus-ring inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/60 text-foreground-muted hover:text-foreground lg:hidden"
             >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {open ? <X size={16} strokeWidth={1.75} /> : <Menu size={16} strokeWidth={1.75} />}
             </button>
           </div>
-        </div>
-      </motion.nav>
+        </nav>
+      </motion.header>
 
       <AnimatePresence>
-        {isMobileMenuOpen && (
+        {open && (
           <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-            className="fixed inset-0 z-40 bg-background pt-20"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-background/85 pt-24 backdrop-blur-xl lg:hidden"
+            onClick={() => setOpen(false)}
           >
-            <div className="flex flex-col items-start px-8 gap-6">
-              {navItems.map((item, i) => (
+            <motion.div
+              initial={{ y: -10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -8, opacity: 0 }}
+              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="mx-auto flex max-w-md flex-col gap-1 px-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {sectionIds.map((id, i) => (
                 <motion.button
-                  key={item.id}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
-                  onClick={() => scrollToSection(item.href)}
-                  className={`font-display text-2xl font-semibold transition-colors ${
-                    activeSection === item.id
-                      ? 'text-accent'
-                      : 'text-foreground'
-                  }`}
+                  key={id}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.04, duration: 0.4 }}
+                  onClick={() => goTo(id)}
+                  className={clsx(
+                    'flex items-center justify-between rounded-2xl px-5 py-4 text-left font-display text-2xl font-medium tracking-tight transition-colors',
+                    active === id
+                      ? 'bg-surface text-foreground'
+                      : 'text-foreground-muted hover:text-foreground'
+                  )}
                 >
-                  {item.label}
+                  <span>{t(id)}</span>
+                  <span className="font-mono text-xs text-foreground-subtle">
+                    0{sectionIds.indexOf(id) + 1}
+                  </span>
                 </motion.button>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
