@@ -1,7 +1,10 @@
 'use client';
 
+import { useRef } from 'react';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { Github, Linkedin, Mail, ArrowUp } from 'lucide-react';
+import { useGSAP } from '@gsap/react';
+import { gsap, PREFERS_MOTION } from '../lib/gsap';
 import { PortfolioData } from '../models/PortfolioData';
 
 const data = PortfolioData.getInstance();
@@ -10,69 +13,91 @@ export default function Footer() {
   const t = useTranslations('footer');
   const contact = data.getContactInfo();
   const year = new Date().getFullYear();
+  const rootRef = useRef<HTMLElement>(null);
+  const nameRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      const mm = gsap.matchMedia();
+      mm.add(PREFERS_MOTION, () => {
+        gsap.from(nameRef.current, {
+          yPercent: 30,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: rootRef.current,
+            start: 'top bottom',
+            end: 'bottom bottom',
+            scrub: true,
+          },
+        });
+      });
+      return () => mm.revert();
+    },
+    { scope: rootRef as React.RefObject<HTMLElement> }
+  );
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
-    <footer className="border-t border-border">
-      <div className="mx-auto max-w-6xl px-6 py-10 md:px-8 lg:px-10">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <div>
-            <div className="flex items-center gap-2.5">
-              <span className="grid h-7 w-7 place-items-center rounded-full bg-foreground font-display text-[11px] font-semibold tracking-tight text-background">
-                YK
-              </span>
-              <span className="font-display text-sm font-medium tracking-tight text-foreground">
-                Yasin Kaan Yiğit
-              </span>
-            </div>
-            <p className="mt-2 max-w-md text-pretty text-xs text-foreground-muted">
-              {t('tagline')}
-            </p>
-          </div>
+  const socials = [
+    {
+      icon: <Github size={16} strokeWidth={1.75} />,
+      href: `https://${contact.github}`,
+      name: 'GitHub',
+    },
+    {
+      icon: <Linkedin size={16} strokeWidth={1.75} />,
+      href: `https://${contact.linkedin}`,
+      name: 'LinkedIn',
+    },
+    {
+      icon: <Mail size={16} strokeWidth={1.75} />,
+      href: `mailto:${contact.email}`,
+      name: 'Email',
+    },
+  ];
 
-          <div className="flex items-center gap-4">
-            <a
-              href={`https://${contact.github}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-foreground-subtle transition-colors hover:text-foreground"
-            >
-              <Github size={16} strokeWidth={1.5} />
-            </a>
-            <a
-              href={`https://${contact.linkedin}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="text-foreground-subtle transition-colors hover:text-foreground"
-            >
-              <Linkedin size={16} strokeWidth={1.5} />
-            </a>
-            <a
-              href={`mailto:${contact.email}`}
-              aria-label="Email"
-              className="text-foreground-subtle transition-colors hover:text-foreground"
-            >
-              <Mail size={16} strokeWidth={1.5} />
-            </a>
-            <button
-              onClick={scrollToTop}
-              aria-label={t('scrollTop')}
-              className="focus-ring ml-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-border bg-card/40 text-foreground-muted transition-colors hover:border-border-strong hover:text-foreground"
-            >
-              <ArrowUp size={13} strokeWidth={1.75} />
-            </button>
-          </div>
+  return (
+    <footer ref={rootRef} className="hairline-t overflow-hidden">
+      <div className="mx-auto w-full max-w-[1440px] px-5 pt-16 md:px-10 md:pt-24">
+        <div ref={nameRef} aria-hidden className="select-none">
+          <span className="display-huge text-stroke block whitespace-nowrap text-center text-[clamp(40px,9.5vw,180px)]">
+            Yasin Kaan Yiğit
+          </span>
         </div>
 
-        <div className="mt-8 border-t border-border pt-6 text-[11px] text-foreground-subtle">
-          <span className="font-mono uppercase tracking-wider">
+        <p className="mx-auto mt-8 max-w-md text-center text-pretty text-sm font-medium text-gray-1 md:text-base">
+          {t('tagline')}
+        </p>
+
+        <div className="hairline-t mt-12 flex flex-col items-start justify-between gap-4 py-6 md:flex-row md:items-center">
+          <span className="mono-label text-gray-1">
             © {year} Yasin Kaan Yiğit · {t('rights')}
           </span>
+
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a
+                key={s.name}
+                href={s.href}
+                target={s.href.startsWith('mailto') ? undefined : '_blank'}
+                rel="noopener noreferrer"
+                aria-label={s.name}
+                title={s.name}
+                className="focus-ring inline-flex h-9 w-9 items-center justify-center border border-hairline text-gray-1 transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+              >
+                {s.icon}
+              </a>
+            ))}
+          </div>
+
+          <button
+            onClick={scrollToTop}
+            className="link-draw focus-ring mono-label text-foreground"
+          >
+            {t('scrollTop')} ↑
+          </button>
         </div>
       </div>
     </footer>

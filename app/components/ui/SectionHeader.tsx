@@ -1,63 +1,45 @@
 'use client';
 
 import clsx from 'clsx';
-import AnimatedText from './AnimatedText';
+import SplitLines from './SplitLines';
 import Reveal from './Reveal';
 
 interface SectionHeaderProps {
+  /** Editorial index, e.g. '01'. */
+  index?: string;
   eyebrow?: string;
   title: string;
   subtitle?: string;
-  align?: 'left' | 'center';
   className?: string;
 }
 
 export default function SectionHeader({
+  index,
   eyebrow,
   title,
   subtitle,
-  align = 'left',
   className,
 }: SectionHeaderProps) {
   return (
-    <div
-      className={clsx(
-        'mb-16 md:mb-20',
-        align === 'center' && 'mx-auto max-w-3xl text-center',
-        className
-      )}
-    >
-      {eyebrow && (
-        <Reveal>
-          <div
-            className={clsx(
-              'mb-5 flex items-center gap-3',
-              align === 'center' && 'justify-center'
-            )}
-          >
-            <span className="h-px w-8 bg-accent/60" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-accent">
-              {eyebrow}
-            </span>
+    <div className={clsx('mb-14 md:mb-20', className)}>
+      {(index || eyebrow) && (
+        <Reveal y={12}>
+          <div className="mono-label flex items-baseline gap-3 text-gray-1">
+            {index && <span className="text-foreground">{index}</span>}
+            {index && eyebrow && <span aria-hidden>/</span>}
+            {eyebrow && <span>{eyebrow}</span>}
           </div>
         </Reveal>
       )}
-      <AnimatedText
+      <SplitLines
         as="h2"
-        text={title}
-        trigger="scroll"
-        splitBy="word"
-        stagger={0.05}
-        className="font-display text-4xl font-medium tracking-tightest text-foreground md:text-6xl"
-      />
+        className="display-huge mt-5 break-words text-[clamp(40px,7vw,104px)] text-foreground"
+      >
+        {title}
+      </SplitLines>
       {subtitle && (
-        <Reveal delay={0.15} className="mt-5">
-          <p
-            className={clsx(
-              'max-w-2xl text-balance text-base leading-relaxed text-foreground-muted md:text-lg',
-              align === 'center' && 'mx-auto'
-            )}
-          >
+        <Reveal delay={0.15} className="mt-6">
+          <p className="max-w-2xl text-pretty text-base font-medium leading-relaxed text-gray-1 md:text-lg">
             {subtitle}
           </p>
         </Reveal>

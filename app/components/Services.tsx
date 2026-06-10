@@ -1,11 +1,12 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
-import { Check, Sparkles, Mail, ArrowUpRight } from 'lucide-react';
-import { FaWhatsapp } from 'react-icons/fa';
 import clsx from 'clsx';
+import { Mail } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa';
+import { useTranslations } from 'next-intl';
 import SectionWrapper from './ui/SectionWrapper';
 import SectionHeader from './ui/SectionHeader';
+import SplitLines from './ui/SplitLines';
 import Reveal from './ui/Reveal';
 import { PortfolioData } from '../models/PortfolioData';
 
@@ -18,16 +19,17 @@ export default function Services() {
   const phone = contact.phone.replace(/[\s+]/g, '');
 
   return (
-    <SectionWrapper id="services">
+    <SectionWrapper id="services" className="pb-0 md:pb-0 lg:pb-0">
       <SectionHeader
+        index="05"
         eyebrow={t('eyebrow')}
         title={t('title')}
         subtitle={t('subtitle')}
       />
 
       <Reveal childSelector="[data-pkg]" childStagger={0.07}>
-        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
-          {services.map((svc) => {
+        <div className="hairline-b mb-20 grid grid-cols-1 md:mb-28 lg:grid-cols-3">
+          {services.map((svc, idx) => {
             const isFeatured = svc.featured;
             const name = t(`packages.${svc.key}.name`);
             const description = t(`packages.${svc.key}.description`);
@@ -40,91 +42,67 @@ export default function Services() {
                 key={svc.key}
                 data-pkg
                 className={clsx(
-                  'relative flex h-full flex-col rounded-3xl border bg-card/60 p-7 backdrop-blur transition-all duration-500 md:p-8',
-                  isFeatured
-                    ? 'border-accent/50 shadow-soft-glow'
-                    : 'border-border hover:border-border-strong hover:shadow-soft-md'
+                  'flex h-full flex-col py-8 lg:px-8 lg:py-10',
+                  idx === 0 && 'lg:pl-0',
+                  idx > 0 && 'lg:hairline-l',
+                  idx > 0 && !isFeatured && 'hairline-t lg:border-t-0',
+                  isFeatured && 'border-t-2 border-t-foreground'
                 )}
               >
-                {isFeatured && (
-                  <span className="absolute -top-3 left-7 inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-[11px] font-medium text-accent-foreground shadow-soft-md">
-                    <Sparkles size={12} strokeWidth={2} />
-                    {t('popularBadge')}
-                  </span>
-                )}
-
-                <div className="flex items-center justify-between">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-foreground-subtle">
-                    {t(`levels.${svc.level}`)}
-                  </span>
-                  <span className="font-mono text-[11px] text-foreground-subtle">
-                    {svc.duration}
-                  </span>
+                <div className="mono-label flex items-center justify-between text-gray-1">
+                  <span>{t(`levels.${svc.level}`)}</span>
+                  {isFeatured && (
+                    <span className="invert-block px-2.5 py-1">{t('popularBadge')}</span>
+                  )}
                 </div>
 
-                <h3 className="mt-4 font-display text-2xl font-medium tracking-tight text-foreground">
+                <h3 className="mt-6 font-display text-2xl font-bold uppercase tracking-tight text-foreground md:text-3xl">
                   {name}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-foreground-muted">
+                <div className="mt-3 font-display text-[clamp(28px,2.5vw,44px)] font-extrabold tracking-tight text-foreground">
+                  {svc.price}
+                </div>
+                <p className="mono-label mt-2 text-gray-1">
+                  {t('durationLabel')}: {svc.duration}
+                </p>
+
+                <p className="mt-6 text-sm leading-relaxed text-gray-1">
                   {description}
                 </p>
 
-                <ul className="mt-7 space-y-3">
+                <ul className="mt-8">
                   {features.map((feature) => (
                     <li
                       key={feature}
-                      className="flex items-start gap-3 text-sm text-foreground"
+                      className="hairline-t flex items-start gap-3 py-2.5 text-sm text-foreground"
                     >
-                      <span
-                        className={clsx(
-                          'mt-0.5 grid h-4 w-4 shrink-0 place-items-center rounded-full',
-                          isFeatured
-                            ? 'bg-accent text-accent-foreground'
-                            : 'bg-accent-soft text-accent'
-                        )}
-                      >
-                        <Check size={10} strokeWidth={3} />
-                      </span>
-                      <span className="text-foreground-muted">{feature}</span>
+                      <span aria-hidden className="font-mono text-gray-1">+</span>
+                      {feature}
                     </li>
                   ))}
                 </ul>
 
-                <div className="mt-7 flex flex-wrap gap-1.5 border-t border-border pt-6">
-                  {svc.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full border border-border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-wider text-foreground-subtle"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+                <p className="mono-label mt-6 text-gray-2">
+                  {svc.technologies.join(' / ')}
+                </p>
 
-                <div className="mt-auto pt-7">
-                  <p className="mb-3 font-mono text-[11px] uppercase tracking-wider text-foreground-subtle">
-                    {t('contactLabel')}
-                  </p>
-                  <div className="flex flex-col gap-2">
+                <div className="mt-auto pt-8">
+                  <p className="mono-label mb-3 text-gray-1">{t('contactLabel')}</p>
+                  <div className="mono-label flex flex-wrap gap-x-6 gap-y-3">
                     <a
                       href={`https://wa.me/${phone}?text=${encodeURIComponent(wamsg)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={clsx(
-                        'focus-ring inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300',
-                        isFeatured
-                          ? 'bg-foreground text-background hover:bg-foreground/90'
-                          : 'border border-border bg-card text-foreground hover:border-border-strong'
-                      )}
+                      className="link-draw focus-ring inline-flex items-center gap-2 text-foreground"
                     >
-                      <FaWhatsapp size={14} />
+                      <FaWhatsapp size={15} />
                       {t('whatsapp')}
                     </a>
                     <a
                       href={`mailto:${contact.email}?subject=${encodeURIComponent(subj)}`}
-                      className="focus-ring inline-flex items-center justify-center gap-2 rounded-full border border-border bg-transparent px-5 py-2.5 text-sm font-medium text-foreground-muted transition-all duration-300 hover:border-border-strong hover:text-foreground"
+                      className="link-draw focus-ring inline-flex items-center gap-2 text-foreground"
                     >
-                      <Mail size={13} strokeWidth={1.75} />
+                      <Mail size={14} strokeWidth={1.75} />
                       {t('email')}
                     </a>
                   </div>
@@ -135,35 +113,38 @@ export default function Services() {
         </div>
       </Reveal>
 
-      <Reveal delay={0.15}>
-        <div className="mt-20 rounded-3xl border border-border bg-card/40 p-8 text-center backdrop-blur md:p-12">
-          <h3 className="text-balance font-display text-2xl font-medium tracking-tight text-foreground md:text-3xl">
+      {/* Full-bleed inverted band */}
+      <div className="invert-block -mx-5 px-5 py-20 md:-mx-10 md:px-10 md:py-28">
+        <div className="mx-auto max-w-[1440px]">
+          <SplitLines
+            as="h3"
+            className="display-huge max-w-4xl text-[clamp(32px,5.5vw,80px)]"
+          >
             {t('custom.title')}
-          </h3>
-          <p className="mx-auto mt-3 max-w-xl text-pretty text-sm leading-relaxed text-foreground-muted md:text-base">
+          </SplitLines>
+          <p className="mt-6 max-w-xl text-pretty text-sm leading-relaxed opacity-70 md:text-base">
             {t('custom.subtitle')}
           </p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
             <a
               href={`https://wa.me/${phone}?text=${encodeURIComponent(t('custom.whatsappMessage'))}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="focus-ring inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90"
+              className="mono-label focus-ring inline-flex items-center gap-2.5 border border-background/40 px-6 py-3.5 transition-colors hover:bg-background hover:text-foreground"
             >
-              <FaWhatsapp size={14} />
+              <FaWhatsapp size={16} />
               {t('custom.whatsappCta')}
-              <ArrowUpRight size={14} strokeWidth={1.75} />
             </a>
             <a
               href={`mailto:${contact.email}?subject=${encodeURIComponent(t('custom.emailSubject'))}`}
-              className="focus-ring inline-flex items-center gap-2 rounded-full border border-border bg-card px-6 py-3 text-sm font-medium text-foreground transition-all duration-300 hover:border-border-strong"
+              className="mono-label focus-ring inline-flex items-center gap-2.5 border border-background/40 px-6 py-3.5 transition-colors hover:bg-background hover:text-foreground"
             >
-              <Mail size={14} strokeWidth={1.75} />
+              <Mail size={15} strokeWidth={1.75} />
               {t('custom.emailCta')}
             </a>
           </div>
         </div>
-      </Reveal>
+      </div>
     </SectionWrapper>
   );
 }

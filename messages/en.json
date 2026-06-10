@@ -36,9 +36,15 @@
     "availability": "Open to new projects",
     "location": "İzmir",
     "cards": {
-      "lawantra": { "tag": "Legaltech" },
-      "dreeys": { "tag": "AI Coach" },
-      "coachun": { "tag": "Coaching" }
+      "lawantra": {
+        "tag": "Legaltech"
+      },
+      "dreeys": {
+        "tag": "AI Coach"
+      },
+      "coachun": {
+        "tag": "Coaching"
+      }
     },
     "marqueeLabel": "Technologies I work with",
     "scrollHint": "Scroll"
@@ -51,8 +57,14 @@
     "languagesTitle": "Languages",
     "educationTitle": "Education",
     "languages": {
-      "tr": { "name": "Turkish", "level": "Native" },
-      "en": { "name": "English", "level": "B1 — Professional working proficiency" }
+      "tr": {
+        "name": "Turkish",
+        "level": "Native"
+      },
+      "en": {
+        "name": "English",
+        "level": "B1 — Professional working proficiency"
+      }
     },
     "education": {
       "ege": {
@@ -141,6 +153,10 @@
         "title": "Dreeys AI · Goal Tracker & Coach",
         "description": "AI-powered goal tracking and coaching app with tasks, habits, reminders, focus sessions, rewards, Apple Sign In, IAP, and 7-language support."
       },
+      "cheemly": {
+        "title": "Cheemly · AI Chemistry Assistant",
+        "description": "AI assistant for chemists; a unified lab workspace offering structure verification (RDKit, OPSIN), retrosynthesis planning, NMR prediction, IUPAC↔SMILES translation and verified literature search across 200M+ papers."
+      },
       "coachun": {
         "title": "Coachun · Coaching Platform",
         "description": "Coaching platform serving 100+ coaches and 200+ users — discovery, secure messaging, scheduling, video, and personalized recommendations."
@@ -169,7 +185,8 @@
       "appStore": "App Store",
       "appGallery": "AppGallery"
     },
-    "ctaMore": "See more on GitHub"
+    "ctaMore": "See more on GitHub",
+    "featuredLabel": "Featured"
   },
   "skills": {
     "title": "Skills",

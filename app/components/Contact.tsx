@@ -2,18 +2,20 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Phone, Mail, Github, Linkedin, Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Phone, Mail, Github, Linkedin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SectionWrapper from './ui/SectionWrapper';
-import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
+import SplitLines from './ui/SplitLines';
 import { PortfolioData } from '../models/PortfolioData';
+import { useMagnetic } from '../hooks/useMagnetic';
 
 const data = PortfolioData.getInstance();
 
 export default function Contact() {
   const t = useTranslations('contact');
   const contact = data.getContactInfo();
+  const submitRef = useMagnetic<HTMLButtonElement>({ strength: 8 });
 
   const [formData, setFormData] = useState({
     name: '',
@@ -76,45 +78,69 @@ export default function Contact() {
 
   return (
     <SectionWrapper id="contact">
-      <SectionHeader
-        eyebrow={t('eyebrow')}
-        title={t('title')}
-        subtitle={t('subtitle')}
-      />
+      <div className="mb-14 md:mb-20">
+        <Reveal y={12}>
+          <div className="mono-label flex items-baseline gap-3 text-gray-1">
+            <span className="text-foreground">06</span>
+            <span aria-hidden>/</span>
+            <span>{t('eyebrow')}</span>
+          </div>
+        </Reveal>
+        <SplitLines
+          as="h2"
+          className="display-huge mt-5 break-words text-[clamp(40px,7vw,104px)] text-foreground"
+        >
+          {t('title')}
+        </SplitLines>
+        <Reveal delay={0.15} className="mt-6">
+          <p className="max-w-2xl text-pretty text-base font-medium leading-relaxed text-gray-1 md:text-lg">
+            {t('subtitle')}
+          </p>
+        </Reveal>
+        <Reveal delay={0.2} className="mt-10">
+          <a
+            href={`mailto:${contact.email}`}
+            className="link-draw focus-ring inline-block break-all font-display text-[clamp(22px,4vw,56px)] font-bold lowercase tracking-tight text-foreground"
+          >
+            {contact.email}
+          </a>
+        </Reveal>
+      </div>
 
-      <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-20">
+      <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-10">
+        {/* Methods table */}
         <Reveal className="lg:col-span-5">
-          <div className="space-y-3">
+          <div className="hairline-b">
             {methods.map((m) => (
               <a
                 key={m.label}
                 href={m.href}
                 target={m.href.startsWith('http') ? '_blank' : undefined}
                 rel={m.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                className="group flex items-center gap-4 rounded-2xl border border-border bg-card/50 p-4 backdrop-blur transition-all duration-300 hover:border-border-strong hover:bg-card"
+                className="group hairline-t flex items-center justify-between gap-4 py-4 transition-colors duration-300 hover:bg-foreground hover:text-background md:px-3"
               >
-                <span className="grid h-10 w-10 place-items-center rounded-full bg-accent-soft text-accent transition-transform duration-300 group-hover:scale-105">
+                <span className="mono-label flex items-center gap-3 text-gray-1 transition-colors group-hover:text-background/60">
                   {m.icon}
+                  {m.label}
                 </span>
-                <div className="min-w-0 flex-1">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground-subtle">
-                    {m.label}
-                  </div>
-                  <div className="mt-0.5 truncate text-sm font-medium text-foreground">
-                    {m.value}
-                  </div>
-                </div>
+                <span className="flex items-center gap-3 truncate text-sm font-medium">
+                  {m.value}
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  >
+                    ↗
+                  </span>
+                </span>
               </a>
             ))}
           </div>
         </Reveal>
 
+        {/* Form */}
         <Reveal className="lg:col-span-7" delay={0.1}>
-          <form
-            onSubmit={handleSubmit}
-            className="rounded-3xl border border-border bg-card/60 p-6 backdrop-blur md:p-8"
-          >
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          <form onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               <Field
                 id="name"
                 label={t('form.name')}
@@ -132,7 +158,7 @@ export default function Contact() {
               />
             </div>
 
-            <div className="mt-5">
+            <div className="mt-8">
               <Field
                 id="subject"
                 label={t('form.subject')}
@@ -142,7 +168,7 @@ export default function Contact() {
               />
             </div>
 
-            <div className="mt-5">
+            <div className="mt-8">
               <Field
                 id="message"
                 multiline
@@ -154,18 +180,21 @@ export default function Contact() {
               />
             </div>
 
-            <div className="mt-7 flex flex-wrap items-center justify-between gap-4">
+            <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
               <button
+                ref={submitRef}
                 type="submit"
                 disabled={submitting}
-                className="focus-ring group inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-all duration-300 hover:bg-foreground/90 disabled:cursor-not-allowed disabled:opacity-60"
+                className="invert-block focus-ring group inline-flex items-center gap-3 px-8 py-4 text-sm font-medium disabled:cursor-not-allowed disabled:opacity-60"
+                style={{ willChange: 'transform' }}
               >
                 {submitting ? t('form.submitting') : t('form.submit')}
-                <Send
-                  size={13}
-                  strokeWidth={2}
-                  className="transition-transform duration-300 group-hover:translate-x-0.5"
-                />
+                <span
+                  aria-hidden
+                  className="transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1"
+                >
+                  ↗
+                </span>
               </button>
 
               <AnimatePresence mode="wait">
@@ -175,10 +204,9 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="inline-flex items-center gap-2 text-sm text-accent"
+                    className="mono-label text-foreground"
                   >
-                    <CheckCircle2 size={15} strokeWidth={1.75} />
-                    {t('status.success')}
+                    ■ {t('status.success')}
                   </motion.div>
                 )}
                 {status === 'error' && (
@@ -187,10 +215,9 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 6 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0 }}
-                    className="inline-flex items-center gap-2 text-sm text-red-500"
+                    className="mono-label text-foreground"
                   >
-                    <AlertCircle size={15} strokeWidth={1.75} />
-                    {t('status.error')}
+                    ⚠ {t('status.error')}
                   </motion.div>
                 )}
               </AnimatePresence>
@@ -224,13 +251,10 @@ function Field({
   rows,
 }: FieldProps) {
   const baseCls =
-    'mt-2 w-full rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-foreground-subtle outline-none transition-all duration-200 focus:border-accent focus:bg-card focus:shadow-soft-glow';
+    'mt-3 w-full border-0 border-b border-hairline bg-transparent px-0 py-2 text-base text-foreground placeholder:text-gray-2 outline-none transition-colors duration-200 focus:border-foreground';
   return (
     <div>
-      <label
-        htmlFor={id}
-        className="font-mono text-[10px] uppercase tracking-[0.2em] text-foreground-muted"
-      >
+      <label htmlFor={id} className="mono-label text-gray-1">
         {label}
       </label>
       {multiline ? (

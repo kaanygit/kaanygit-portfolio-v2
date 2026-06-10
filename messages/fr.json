@@ -36,9 +36,15 @@
     "availability": "Ouvert aux nouveaux projets",
     "location": "İzmir",
     "cards": {
-      "lawantra": { "tag": "Legaltech" },
-      "dreeys": { "tag": "Coach IA" },
-      "coachun": { "tag": "Coaching" }
+      "lawantra": {
+        "tag": "Legaltech"
+      },
+      "dreeys": {
+        "tag": "Coach IA"
+      },
+      "coachun": {
+        "tag": "Coaching"
+      }
     },
     "marqueeLabel": "Technologies que j'utilise",
     "scrollHint": "Faire défiler"
@@ -51,8 +57,14 @@
     "languagesTitle": "Langues",
     "educationTitle": "Formation",
     "languages": {
-      "tr": { "name": "Turc", "level": "Langue maternelle" },
-      "en": { "name": "Anglais", "level": "B1 — Niveau professionnel" }
+      "tr": {
+        "name": "Turc",
+        "level": "Langue maternelle"
+      },
+      "en": {
+        "name": "Anglais",
+        "level": "B1 — Niveau professionnel"
+      }
     },
     "education": {
       "ege": {
@@ -141,6 +153,10 @@
         "title": "Dreeys AI · Goal Tracker & Coach",
         "description": "Application IA de suivi d'objectifs et de coaching personnel avec tâches, habitudes, rappels, sessions de focus, récompenses, Apple Sign In, IAP et 7 langues."
       },
+      "cheemly": {
+        "title": "Cheemly · Assistant IA de Chimie",
+        "description": "Assistant IA pour chimistes ; un espace de travail de laboratoire unifié offrant vérification de structures (RDKit, OPSIN), planification de rétrosynthèse, prédiction RMN, traduction IUPAC↔SMILES et recherche bibliographique vérifiée parmi plus de 200 M d’articles."
+      },
       "coachun": {
         "title": "Coachun · Plateforme de Coaching",
         "description": "Plateforme de coaching servant plus de 100 coachs et 200+ utilisateurs — découverte, messagerie sécurisée, rendez-vous, vidéo et recommandations personnalisées."
@@ -169,7 +185,8 @@
       "appStore": "App Store",
       "appGallery": "AppGallery"
     },
-    "ctaMore": "Voir plus sur GitHub"
+    "ctaMore": "Voir plus sur GitHub",
+    "featuredLabel": "À la une"
   },
   "skills": {
     "title": "Compétences",

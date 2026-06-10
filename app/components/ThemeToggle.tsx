@@ -33,7 +33,7 @@ export default function ThemeToggle() {
       whileTap={{ scale: 0.94 }}
       aria-label={label}
       title={label}
-      className="focus-ring relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/60 text-foreground-muted transition-colors hover:border-border-strong hover:text-foreground"
+      className="focus-ring relative inline-flex h-9 w-9 items-center justify-center border border-hairline text-gray-1 transition-colors hover:border-foreground hover:text-foreground"
     >
       <AnimatePresence mode="wait" initial={false}>
         <motion.span

@@ -1,18 +1,16 @@
 'use client';
 
 import { useRef } from 'react';
+import clsx from 'clsx';
+import { Github, Linkedin, Mail } from 'lucide-react';
 import { useTranslations } from 'next-intl';
-import { motion } from 'framer-motion';
-import { ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
 import { useGSAP } from '@gsap/react';
-import { gsap } from '../lib/gsap';
+import { gsap, PREFERS_MOTION } from '../lib/gsap';
 import { PortfolioData } from '../models/PortfolioData';
-import AnimatedText from './ui/AnimatedText';
-import AvailabilityBadge from './ui/AvailabilityBadge';
-import AuroraMesh from './ui/AuroraMesh';
-import HeroProjectStack from './ui/HeroProjectStack';
+import SplitLines from './ui/SplitLines';
 import CountUp from './ui/CountUp';
-import TechMarquee from './ui/TechMarquee';
+import Marquee from './ui/Marquee';
+import Reveal from './ui/Reveal';
 import { useMagnetic } from '../hooks/useMagnetic';
 
 const data = PortfolioData.getInstance();
@@ -34,10 +32,19 @@ function parseStat(value: string): StatNumber {
 export default function Hero() {
   const t = useTranslations('hero');
   const root = useRef<HTMLElement>(null);
-  const ctaRef = useMagnetic<HTMLAnchorElement>({ strength: 10, innerSelector: '[data-cta-icon]' });
+  const nameRef = useRef<HTMLDivElement>(null);
+  const ctaRef = useMagnetic<HTMLAnchorElement>({
+    strength: 10,
+    innerSelector: '[data-cta-icon]',
+  });
 
   const contact = data.getContactInfo();
+  const { firstName, lastName } = data.getHeroName();
   const stats = data.getHeroStats().filter((s) => s.key !== 'ai');
+  const marqueeItems = data
+    .getSkills()
+    .filter((s) => s.level !== 'intermediate')
+    .map((s) => s.name);
 
   useGSAP(
     () => {
@@ -45,9 +52,9 @@ export default function Hero() {
       if (!el) return;
       const mm = gsap.matchMedia();
 
-      mm.add('(prefers-reduced-motion: no-preference)', () => {
-        gsap.to('[data-hero-side]', {
-          yPercent: -8,
+      mm.add(PREFERS_MOTION, () => {
+        gsap.to(nameRef.current, {
+          yPercent: -12,
           ease: 'none',
           scrollTrigger: {
             trigger: el,
@@ -56,182 +63,179 @@ export default function Hero() {
             scrub: true,
           },
         });
+
+        gsap.from('[data-hero-line]', {
+          opacity: 0,
+          y: 16,
+          duration: 0.9,
+          ease: 'power4.out',
+          delay: 0.25,
+          stagger: 0.15,
+        });
+
+        gsap.to('[data-scroll-hint-line]', {
+          scaleY: 0,
+          transformOrigin: 'top center',
+          repeat: -1,
+          yoyo: true,
+          duration: 1.2,
+          ease: 'power2.inOut',
+        });
       });
       return () => mm.revert();
     },
     { scope: root as React.RefObject<HTMLElement> }
   );
 
+  const socials = [
+    {
+      icon: <Github size={18} strokeWidth={1.75} />,
+      href: `https://${contact.github}`,
+      name: 'GitHub',
+    },
+    {
+      icon: <Linkedin size={18} strokeWidth={1.75} />,
+      href: `https://${contact.linkedin}`,
+      name: 'LinkedIn',
+    },
+    {
+      icon: <Mail size={18} strokeWidth={1.75} />,
+      href: `mailto:${contact.email}`,
+      name: 'Email',
+    },
+  ];
+
   return (
-    <section
-      ref={root}
-      id="home"
-      className="relative flex min-h-[100svh] items-center overflow-hidden pb-12 pt-28 md:pb-20 md:pt-32"
-    >
-      <AuroraMesh />
-
-      <div className="relative mx-auto w-full max-w-6xl px-6 md:px-8 lg:px-10">
-        <div className="mb-8 flex flex-col items-start gap-4 md:flex-row md:items-center md:gap-5">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.05 }}
-            className="inline-flex items-center gap-2.5 rounded-full border border-border bg-card/60 px-3.5 py-1.5 backdrop-blur"
-          >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+    <section ref={root} id="home" className="relative overflow-hidden">
+      <div className="mx-auto flex min-h-[100svh] w-full max-w-[1440px] flex-col px-5 pt-14 md:px-10">
+        {/* Meta row */}
+        <div data-hero-line className="hairline-b mt-6 md:mt-8">
+          <div className="mono-label flex flex-wrap items-center justify-between gap-x-6 gap-y-2 py-3 text-gray-1">
+            <span>{t('eyebrow')}</span>
+            <span className="flex items-center gap-2 text-foreground">
+              <span aria-hidden className="inline-block h-1.5 w-1.5 animate-pulse bg-foreground" />
+              {t('availability')}
             </span>
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-foreground-muted">
-              {t('eyebrow')}
+            <span className="hidden md:inline">
+              {t('location')} — ©{new Date().getFullYear()}
             </span>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.18 }}
-          >
-            <AvailabilityBadge />
-          </motion.div>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-12">
-          <div className="lg:col-span-7">
-            <h1 className="font-display text-[40px] font-medium leading-[1.02] tracking-tightest text-foreground sm:text-6xl md:text-7xl lg:text-[80px]">
-              <AnimatedText
-                as="span"
-                text={t('headlineLine1')}
-                splitBy="word"
-                stagger={0.05}
-                delay={0.1}
-                className="block"
-              />
-              <AnimatedText
-                as="span"
-                text={t('headlineLine2')}
-                splitBy="word"
-                stagger={0.05}
-                delay={0.32}
-                className="block gradient-accent"
-              />
-            </h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1], delay: 0.7 }}
-              className="mt-8 max-w-xl text-balance text-base leading-relaxed text-foreground-muted md:text-lg"
+        {/* Name block */}
+        <div ref={nameRef} className="flex flex-1 flex-col justify-center py-10">
+          <h1 className="display-huge text-[clamp(44px,10vw,185px)]">
+            <SplitLines
+              as="span"
+              split="chars"
+              trigger="load"
+              delay={0.35}
+              className="block whitespace-nowrap"
             >
-              {t('summary')}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 0.85 }}
-              className="mt-10 flex flex-wrap items-center gap-3"
+              {firstName}
+            </SplitLines>
+            <SplitLines
+              as="span"
+              split="chars"
+              trigger="load"
+              delay={0.6}
+              className="text-stroke block whitespace-nowrap"
             >
-              <a
-                ref={ctaRef}
-                href="#projects"
-                className="focus-ring group relative inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors duration-300 hover:bg-foreground/90"
-                style={{ willChange: 'transform' }}
-              >
-                {t('ctaPrimary')}
-                <span data-cta-icon className="inline-flex">
-                  <ArrowRight
-                    size={15}
-                    strokeWidth={2}
-                    className="transition-transform duration-300 group-hover:translate-x-0.5"
-                  />
-                </span>
-              </a>
-              <a
-                href="#contact"
-                className="focus-ring inline-flex items-center gap-2 rounded-full border border-border bg-card/40 px-6 py-3 text-sm font-medium text-foreground backdrop-blur transition-all duration-300 hover:border-border-strong hover:bg-card"
-              >
-                {t('ctaSecondary')}
-              </a>
+              {lastName}
+            </SplitLines>
+          </h1>
+          <p className="sr-only">
+            {t('headlineLine1')} {t('headlineLine2')}
+          </p>
 
-              <div className="ml-2 flex items-center gap-3">
+          {/* Bottom row */}
+          <div className="mt-12 grid grid-cols-1 gap-10 md:mt-16 lg:grid-cols-12">
+            <Reveal delay={0.9} className="lg:col-span-5">
+              <p className="max-w-xl text-pretty text-base leading-relaxed text-gray-1 md:text-lg">
+                {t('summary')}
+              </p>
+            </Reveal>
+
+            <Reveal delay={1.05} className="lg:col-span-7">
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-5 lg:justify-end">
                 <a
-                  href={`https://${contact.github}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub"
-                  className="text-foreground-subtle transition-colors hover:text-foreground"
+                  ref={ctaRef}
+                  href="#projects"
+                  className="invert-block focus-ring group inline-flex items-center gap-3 px-7 py-4 text-sm font-medium"
+                  style={{ willChange: 'transform' }}
                 >
-                  <Github size={18} strokeWidth={1.5} />
+                  {t('ctaPrimary')}
+                  <span data-cta-icon className="inline-flex transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                    ↗
+                  </span>
                 </a>
                 <a
-                  href={`https://${contact.linkedin}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="text-foreground-subtle transition-colors hover:text-foreground"
+                  href="#contact"
+                  className="link-draw focus-ring text-sm font-medium text-foreground"
                 >
-                  <Linkedin size={18} strokeWidth={1.5} />
+                  {t('ctaSecondary')}
                 </a>
-                <a
-                  href={`mailto:${contact.email}`}
-                  aria-label="Email"
-                  className="text-foreground-subtle transition-colors hover:text-foreground"
-                >
-                  <Mail size={18} strokeWidth={1.5} />
-                </a>
+                <div className="flex items-center gap-2">
+                  {socials.map((s) => (
+                    <a
+                      key={s.name}
+                      href={s.href}
+                      target={s.href.startsWith('mailto') ? undefined : '_blank'}
+                      rel="noopener noreferrer"
+                      aria-label={s.name}
+                      title={s.name}
+                      className="focus-ring inline-flex h-11 w-11 items-center justify-center border border-hairline text-gray-1 transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                    >
+                      {s.icon}
+                    </a>
+                  ))}
+                </div>
               </div>
-            </motion.div>
-
-            {/* Inline stats strip with count-up */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1], delay: 1.05 }}
-              className="mt-12 flex flex-wrap items-end gap-x-8 gap-y-5 border-t border-border/70 pt-6"
-            >
-              {stats.map((s) => {
-                const parsed = parseStat(s.value);
-                return (
-                  <div key={s.key} className="flex flex-col">
-                    <CountUp
-                      value={parsed.raw}
-                      decimals={parsed.decimals}
-                      suffix={parsed.suffix}
-                      className="font-display text-2xl font-medium tracking-tight text-foreground md:text-3xl"
-                    />
-                    <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-foreground-subtle">
-                      {t(`stats.${s.key}`)}
-                    </span>
-                  </div>
-                );
-              })}
-            </motion.div>
-          </div>
-
-          {/* Right column — project preview stack */}
-          <div data-hero-side className="lg:col-span-5">
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, ease: [0.25, 0.1, 0.25, 1], delay: 0.55 }}
-            >
-              <HeroProjectStack />
-            </motion.div>
+            </Reveal>
           </div>
         </div>
 
-        {/* Tech marquee strip */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-16 md:mt-20"
-        >
-          <TechMarquee label={t('marqueeLabel')} />
-        </motion.div>
+        {/* Stats strip */}
+        <div data-hero-line className="hairline-t">
+          <Reveal delay={1.2} className="grid grid-cols-2 lg:grid-cols-4">
+            {stats.map((s, i) => {
+              const parsed = parseStat(s.value);
+              return (
+                <div
+                  key={s.key}
+                  className={clsx(
+                    'flex flex-col gap-1 py-6',
+                    i % 2 === 1 && 'hairline-l pl-6',
+                    i === 2 && 'lg:hairline-l lg:pl-6',
+                    i >= 2 && 'hairline-t lg:border-t-0'
+                  )}
+                >
+                  <CountUp
+                    value={parsed.raw}
+                    decimals={parsed.decimals}
+                    suffix={parsed.suffix}
+                    className="font-display text-3xl font-bold tracking-tight text-foreground md:text-4xl"
+                  />
+                  <span className="mono-label text-gray-1">{t(`stats.${s.key}`)}</span>
+                </div>
+              );
+            })}
+          </Reveal>
+        </div>
 
+        {/* Scroll hint */}
+        <div className="flex items-center justify-center gap-3 py-5">
+          <span className="mono-label text-gray-2">{t('scrollHint')}</span>
+          <span
+            data-scroll-hint-line
+            aria-hidden
+            className="block h-6 w-px bg-foreground"
+          />
+        </div>
       </div>
+
+      {/* Tech marquee band */}
+      <Marquee label={t('marqueeLabel')} items={marqueeItems} />
     </section>
   );
 }

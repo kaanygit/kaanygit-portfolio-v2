@@ -36,9 +36,15 @@
     "availability": "Yeni projelere açık",
     "location": "İzmir",
     "cards": {
-      "lawantra": { "tag": "Legaltech" },
-      "dreeys": { "tag": "AI Coach" },
-      "coachun": { "tag": "Coaching" }
+      "lawantra": {
+        "tag": "Legaltech"
+      },
+      "dreeys": {
+        "tag": "AI Coach"
+      },
+      "coachun": {
+        "tag": "Coaching"
+      }
     },
     "marqueeLabel": "Çalıştığım teknolojiler",
     "scrollHint": "Aşağı kaydır"
@@ -51,8 +57,14 @@
     "languagesTitle": "Diller",
     "educationTitle": "Eğitim",
     "languages": {
-      "tr": { "name": "Türkçe", "level": "Ana dil" },
-      "en": { "name": "İngilizce", "level": "B1 — Profesyonel çalışma seviyesi" }
+      "tr": {
+        "name": "Türkçe",
+        "level": "Ana dil"
+      },
+      "en": {
+        "name": "İngilizce",
+        "level": "B1 — Profesyonel çalışma seviyesi"
+      }
     },
     "education": {
       "ege": {
@@ -141,6 +153,10 @@
         "title": "Dreeys AI · Goal Tracker & Coach",
         "description": "Görev, alışkanlık, hatırlatma, odak seansı, ödül sistemi, Apple Sign In, IAP ve 7 dil desteği ile AI destekli hedef takibi ve kişisel koçluk uygulaması."
       },
+      "cheemly": {
+        "title": "Cheemly · AI Kimya Asistanı",
+        "description": "Kimyacılar için AI asistanı; yapı doğrulama (RDKit, OPSIN), retrosentez planlama, NMR tahmini, IUPAC↔SMILES çevirisi ve 200M+ makalede doğrulanmış literatür taraması sunan birleşik laboratuvar çalışma alanı."
+      },
       "coachun": {
         "title": "Coachun · Koçluk Platformu",
         "description": "100+ koç ve 200+ kullanıcıya hizmet veren; keşif, güvenli mesajlaşma, randevu, görüntülü görüşme ve kişiselleştirilmiş öneri akışları içeren koçluk platformu."
@@ -169,7 +185,8 @@
       "appStore": "App Store",
       "appGallery": "AppGallery"
     },
-    "ctaMore": "Daha fazla projeyi GitHub'da incele"
+    "ctaMore": "Daha fazla projeyi GitHub'da incele",
+    "featuredLabel": "Öne Çıkan"
   },
   "skills": {
     "title": "Yetenekler",

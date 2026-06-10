@@ -1,24 +1,14 @@
 'use client';
 
+import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
-import { Smartphone, Globe, Server, Database, Wrench, Brain } from 'lucide-react';
 import SectionWrapper from './ui/SectionWrapper';
 import SectionHeader from './ui/SectionHeader';
 import Reveal from './ui/Reveal';
-import SkillBadge from './ui/SkillBadge';
 import { PortfolioData } from '../models/PortfolioData';
 import type { SkillCategory } from '../types';
 
 const data = PortfolioData.getInstance();
-
-const categoryIcon: Record<SkillCategory, React.ReactNode> = {
-  mobile: <Smartphone size={15} strokeWidth={1.75} />,
-  frontend: <Globe size={15} strokeWidth={1.75} />,
-  backend: <Server size={15} strokeWidth={1.75} />,
-  database: <Database size={15} strokeWidth={1.75} />,
-  ai: <Brain size={15} strokeWidth={1.75} />,
-  tools: <Wrench size={15} strokeWidth={1.75} />,
-};
 
 const categoryOrder: SkillCategory[] = [
   'mobile',
@@ -44,36 +34,55 @@ export default function Skills() {
   return (
     <SectionWrapper id="skills">
       <SectionHeader
+        index="04"
         eyebrow={t('eyebrow')}
         title={t('title')}
         subtitle={t('subtitle')}
       />
 
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-        {categoryOrder.map((cat, i) => {
+      {/* Legend */}
+      <Reveal>
+        <p className="mono-label mb-2 text-gray-1">
+          <span className="font-bold text-foreground">{t('legend.expert')}</span>
+          {' · '}
+          <span className="text-foreground">{t('legend.advanced')}</span>
+          {' · '}
+          {t('legend.intermediate')}
+        </p>
+      </Reveal>
+
+      <div className="hairline-b">
+        {categoryOrder.map((cat) => {
           const list = grouped[cat];
           if (!list?.length) return null;
           return (
-            <Reveal key={cat} delay={i * 0.05}>
-              <div className="rounded-3xl border border-border bg-card/50 p-6 backdrop-blur md:p-7">
-                <div className="mb-5 flex items-center gap-3">
-                  <span className="grid h-8 w-8 place-items-center rounded-full bg-surface-2 text-foreground">
-                    {categoryIcon[cat]}
-                  </span>
-                  <div className="flex flex-1 items-center justify-between">
-                    <h3 className="font-display text-base font-medium text-foreground">
-                      {t(`categories.${cat}`)}
-                    </h3>
-                    <span className="font-mono text-[10px] uppercase tracking-wider text-foreground-subtle">
-                      {String(list.length).padStart(2, '0')}
+            <Reveal key={cat}>
+              <div className="hairline-t grid grid-cols-1 gap-4 py-8 md:grid-cols-12 md:gap-8 md:py-10">
+                <div className="mono-label flex items-baseline gap-3 text-gray-1 md:col-span-3 md:pt-2">
+                  <span className="text-foreground">{t(`categories.${cat}`)}</span>
+                  <span>({String(list.length).padStart(2, '0')})</span>
+                </div>
+                <p className="md:col-span-9">
+                  {list.map((s, i) => (
+                    <span key={s.id}>
+                      <span
+                        className={clsx(
+                          'font-display text-xl uppercase tracking-tight md:text-2xl',
+                          s.level === 'expert' && 'font-bold text-foreground',
+                          s.level === 'advanced' && 'font-medium text-foreground',
+                          s.level === 'intermediate' && 'font-medium text-gray-1'
+                        )}
+                      >
+                        {s.name}
+                      </span>
+                      {i < list.length - 1 && (
+                        <span aria-hidden className="px-2 text-xl text-gray-2 md:px-3 md:text-2xl">
+                          /
+                        </span>
+                      )}
                     </span>
-                  </div>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {list.map((s) => (
-                    <SkillBadge key={s.id} name={s.name} />
                   ))}
-                </div>
+                </p>
               </div>
             </Reveal>
           );

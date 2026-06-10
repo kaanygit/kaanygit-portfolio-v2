@@ -107,6 +107,20 @@ export class PortfolioData {
         featured: true,
       },
       {
+        key: 'cheemly',
+        technologies: [
+          'Next.js',
+          'TypeScript',
+          'Python',
+          'AI Integration',
+          'RDKit',
+        ],
+        category: 'web',
+        liveUrl: 'https://cheemly.com',
+        imageUrl: '/cheemly-logo.svg',
+        featured: true,
+      },
+      {
         key: 'coachun',
         technologies: ['Flutter', 'Firebase', 'Frontend', 'Backend'],
         category: 'mobile',

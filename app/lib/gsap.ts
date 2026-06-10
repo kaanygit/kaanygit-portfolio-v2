@@ -2,9 +2,10 @@
 
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
 if (typeof window !== 'undefined') {
-  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(ScrollTrigger, SplitText);
   ScrollTrigger.config({ ignoreMobileResize: true });
 }
 
@@ -14,4 +15,6 @@ export const ease = {
   spring: 'back.out(1.4)',
 } as const;
 
-export { gsap, ScrollTrigger };
+export const PREFERS_MOTION = '(prefers-reduced-motion: no-preference)';
+
+export { gsap, ScrollTrigger, SplitText };

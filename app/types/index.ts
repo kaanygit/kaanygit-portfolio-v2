@@ -1,6 +1,7 @@
 export type ProjectKey =
   | 'lawantra'
   | 'dreeys'
+  | 'cheemly'
   | 'coachun'
   | 'ppazar'
   | 'spory'

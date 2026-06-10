@@ -36,9 +36,15 @@
     "availability": "Abierto a nuevos proyectos",
     "location": "İzmir",
     "cards": {
-      "lawantra": { "tag": "Legaltech" },
-      "dreeys": { "tag": "Coach IA" },
-      "coachun": { "tag": "Coaching" }
+      "lawantra": {
+        "tag": "Legaltech"
+      },
+      "dreeys": {
+        "tag": "Coach IA"
+      },
+      "coachun": {
+        "tag": "Coaching"
+      }
     },
     "marqueeLabel": "Tecnologías con las que trabajo",
     "scrollHint": "Desliza"
@@ -51,8 +57,14 @@
     "languagesTitle": "Idiomas",
     "educationTitle": "Educación",
     "languages": {
-      "tr": { "name": "Turco", "level": "Nativo" },
-      "en": { "name": "Inglés", "level": "B1 — Nivel profesional de trabajo" }
+      "tr": {
+        "name": "Turco",
+        "level": "Nativo"
+      },
+      "en": {
+        "name": "Inglés",
+        "level": "B1 — Nivel profesional de trabajo"
+      }
     },
     "education": {
       "ege": {
@@ -141,6 +153,10 @@
         "title": "Dreeys AI · Goal Tracker & Coach",
         "description": "App con IA para seguimiento de objetivos y coaching personal con tareas, hábitos, recordatorios, sesiones de foco, recompensas, Apple Sign In, IAP y soporte en 7 idiomas."
       },
+      "cheemly": {
+        "title": "Cheemly · Asistente de Química con IA",
+        "description": "Asistente de IA para químicos; un espacio de trabajo de laboratorio unificado con verificación de estructuras (RDKit, OPSIN), planificación de retrosíntesis, predicción de RMN, traducción IUPAC↔SMILES y búsqueda bibliográfica verificada en más de 200 M de artículos."
+      },
       "coachun": {
         "title": "Coachun · Plataforma de Coaching",
         "description": "Plataforma de coaching que sirve a más de 100 coaches y 200+ usuarios — descubrimiento, mensajería segura, agendamiento, video y recomendaciones personalizadas."
@@ -169,7 +185,8 @@
       "appStore": "App Store",
       "appGallery": "AppGallery"
     },
-    "ctaMore": "Ver más en GitHub"
+    "ctaMore": "Ver más en GitHub",
+    "featuredLabel": "Destacado"
   },
   "skills": {
     "title": "Habilidades",

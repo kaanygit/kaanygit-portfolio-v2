@@ -36,9 +36,15 @@
     "availability": "Offen für neue Projekte",
     "location": "İzmir",
     "cards": {
-      "lawantra": { "tag": "Legaltech" },
-      "dreeys": { "tag": "KI-Coach" },
-      "coachun": { "tag": "Coaching" }
+      "lawantra": {
+        "tag": "Legaltech"
+      },
+      "dreeys": {
+        "tag": "KI-Coach"
+      },
+      "coachun": {
+        "tag": "Coaching"
+      }
     },
     "marqueeLabel": "Technologien, mit denen ich arbeite",
     "scrollHint": "Scrollen"
@@ -51,8 +57,14 @@
     "languagesTitle": "Sprachen",
     "educationTitle": "Ausbildung",
     "languages": {
-      "tr": { "name": "Türkisch", "level": "Muttersprache" },
-      "en": { "name": "Englisch", "level": "B1 — Berufliche Arbeitskenntnisse" }
+      "tr": {
+        "name": "Türkisch",
+        "level": "Muttersprache"
+      },
+      "en": {
+        "name": "Englisch",
+        "level": "B1 — Berufliche Arbeitskenntnisse"
+      }
     },
     "education": {
       "ege": {
@@ -141,6 +153,10 @@
         "title": "Dreeys AI · Goal Tracker & Coach",
         "description": "KI-gestützte App für Zieltracking und persönliches Coaching mit Aufgaben, Gewohnheiten, Erinnerungen, Fokussessions, Belohnungen, Apple Sign In, IAP und 7 Sprachen."
       },
+      "cheemly": {
+        "title": "Cheemly · KI-Chemie-Assistent",
+        "description": "KI-Assistent für Chemiker; ein einheitlicher Labor-Workspace mit Strukturvalidierung (RDKit, OPSIN), Retrosynthese-Planung, NMR-Vorhersage, IUPAC↔SMILES-Übersetzung und verifizierter Literatursuche in über 200 Mio. Publikationen."
+      },
       "coachun": {
         "title": "Coachun · Coaching-Plattform",
         "description": "Coaching-Plattform mit über 100 Coaches und 200+ Nutzern — Discovery, sicheres Messaging, Termine, Videogespräche und personalisierte Empfehlungen."
@@ -169,7 +185,8 @@
       "appStore": "App Store",
       "appGallery": "AppGallery"
     },
-    "ctaMore": "Mehr auf GitHub entdecken"
+    "ctaMore": "Mehr auf GitHub entdecken",
+    "featuredLabel": "Ausgewählt"
   },
   "skills": {
     "title": "Fähigkeiten",

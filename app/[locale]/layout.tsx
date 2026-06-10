@@ -1,31 +1,30 @@
 import type { Metadata } from 'next';
-import { Sora, DM_Sans, JetBrains_Mono } from 'next/font/google';
+import { Archivo, DM_Sans, JetBrains_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, getTranslations, setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 import ThemeProvider, { themeInitScript } from '../components/ThemeProvider';
-import CursorGlow from '../components/CursorGlow';
 import { routing } from '../../i18n/routing';
 import '../globals.css';
 
-const sora = Sora({
+const archivo = Archivo({
   variable: '--font-display',
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  subsets: ['latin', 'latin-ext'],
+  weight: ['500', '600', '700', '800', '900'],
   display: 'swap',
 });
 
 const dmSans = DM_Sans({
   variable: '--font-body',
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['400', '500', '600'],
   display: 'swap',
 });
 
 const jetbrainsMono = JetBrains_Mono({
   variable: '--font-mono',
-  subsets: ['latin'],
+  subsets: ['latin', 'latin-ext'],
   weight: ['400', '500'],
   display: 'swap',
 });
@@ -120,11 +119,10 @@ export default async function LocaleLayout({
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body
-        className={`${sora.variable} ${dmSans.variable} ${jetbrainsMono.variable} bg-background font-body text-foreground antialiased`}
+        className={`${archivo.variable} ${dmSans.variable} ${jetbrainsMono.variable} bg-background font-body text-foreground antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ThemeProvider>
-            <CursorGlow />
             {children}
           </ThemeProvider>
         </NextIntlClientProvider>
